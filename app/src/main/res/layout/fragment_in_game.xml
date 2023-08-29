@@ -163,7 +163,7 @@
         android:layout_weight="4"
         android:weightSum="10"
         android:orientation="vertical"
-        android:background="@drawable/grid">
+        android:background="@drawable/grid33">
 
         <View
             android:layout_width="match_parent"

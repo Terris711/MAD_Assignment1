@@ -86,14 +86,14 @@
 
             <ImageView
                 android:id="@+id/player_two_img"
-                android:layout_width="match_parent"
-                android:layout_weight="6.85"
-                android:layout_gravity="center"
+                android:layout_width="69dp"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="6.85"
                 android:src="@drawable/profile_img"
                 app:civ_shadow="true"
-                app:civ_shadow_radius="1dp"
-                />
+                app:civ_shadow_radius="1dp" />
+
             <TextView
                 android:id="@+id/player_two_name_txt"
                 android:layout_width="match_parent"
@@ -309,7 +309,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/player_two_won_txt"
+                android:id="@+id/player_one_won_txt"
                 android:layout_width="73dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
@@ -320,17 +320,17 @@
                 android:textSize="20dp"></TextView>
 
             <ImageView
-                android:id="@+id/player_two_img"
-                android:layout_width="match_parent"
-                android:layout_weight="6.85"
-                android:layout_gravity="center"
+                android:id="@+id/player_one_img"
+                android:layout_width="69dp"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="6.85"
                 android:src="@drawable/profile_img"
                 app:civ_shadow="true"
-                app:civ_shadow_radius="1dp"
-                />
+                app:civ_shadow_radius="1dp" />
+
             <TextView
-                android:id="@+id/player_two_name_txt"
+                android:id="@+id/player_one_name_txt"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
