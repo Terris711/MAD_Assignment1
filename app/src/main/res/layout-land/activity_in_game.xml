@@ -91,8 +91,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="6.85"
                 android:src="@drawable/profile_img"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="1dp" />
+/>
 
             <TextView
                 android:id="@+id/player_two_name_txt"
@@ -112,7 +111,7 @@
             android:layout_width="408dp"
             android:layout_height="348dp"
             android:layout_weight="10"
-            android:background="@drawable/grid"
+            android:background="@drawable/grid33"
             android:orientation="vertical"
             android:weightSum="10">
 
@@ -326,8 +325,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="6.85"
                 android:src="@drawable/profile_img"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="1dp" />
+
+               />
 
             <TextView
                 android:id="@+id/player_one_name_txt"
