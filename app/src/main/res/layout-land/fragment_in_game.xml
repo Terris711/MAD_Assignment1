@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="#F6F6F6"
+    android:layout_height="match_parent"
+    tools:context=".InGameActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_weight="0.75"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"></View>
+
+        <ImageView
+            android:id="@+id/offline_game_back_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:src="@drawable/back_icon"></ImageView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8.5"></View>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="0.65"
+            android:elevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="40dp">
+
+
+            <ImageView
+                android:id="@+id/offline_game_seting_gifview"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="7.5dp"
+                android:src="@drawable/settings_gif" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="348dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginRight="35dp"
+        android:layout_weight="4"
+        android:background="@drawable/grid"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.85"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="1"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="2"></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="3"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></View>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.85"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="4"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="5"></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="6"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="7"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="8"></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:id="@+id/img_9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:tag="9"></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"></View>
+
+    </LinearLayout>
+
+</LinearLayout>
