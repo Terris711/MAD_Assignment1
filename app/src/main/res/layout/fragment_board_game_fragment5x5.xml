@@ -13,7 +13,7 @@
         android:layout_marginLeft="35dp"
         android:layout_weight="4"
         android:orientation="vertical"
-        android:background="@drawable/grid44"
+        android:background="@drawable/grid55"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +92,20 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.25"></View>
+            <ImageView
+                android:tag="3"
+                android:id="@+id/img_4"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25"></View>
+
 
 
         </LinearLayout>
@@ -145,6 +159,19 @@
             <ImageView
                 android:tag="6"
                 android:id="@+id/img_7"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="6"
+                android:id="@+id/img_8"
                 android:layout_width="0dp"
                 android:layout_weight="3.1"
                 android:padding="15dp"
@@ -241,6 +268,19 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_12"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
         </LinearLayout>
 
 
@@ -293,6 +333,105 @@
             <ImageView
                 android:tag="9"
                 android:id="@+id/img_15"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_16"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_16"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            >
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="7"
+                android:id="@+id/img_13"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="8"
+                android:id="@+id/img_14"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_15"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_16"
                 android:layout_width="0dp"
                 android:layout_weight="3.1"
                 android:padding="15dp"
