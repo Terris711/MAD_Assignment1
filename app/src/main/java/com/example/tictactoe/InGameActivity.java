@@ -8,7 +8,6 @@ import android.widget.ImageView;
 
 public class InGameActivity extends AppCompatActivity {
     BoardGameFragment3x3 grid3x3 = new BoardGameFragment3x3();
-    BoardGameFragment4x4 grid4x4 = new BoardGameFragment4x4();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +16,7 @@ public class InGameActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        fragmentManager.beginTransaction().add(R.id.grid_fragment, grid4x4).commit();
+        fragmentManager.beginTransaction().add(R.id.grid_fragment, grid3x3).commit();
 
     }
 }
