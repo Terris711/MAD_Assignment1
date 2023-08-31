@@ -71,27 +71,28 @@
 
         <LinearLayout
 
-            android:layout_width="0dp"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
             android:layout_gravity="center"
-            android:layout_marginTop="22.5dp"
-            android:layout_marginBottom="13dp"
-            android:layout_weight="2"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:background="@drawable/count_background"
             android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/player_two_count"
-                android:layout_width="73dp"
+                android:layout_width="49dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="6"
+                android:text="0"
                 android:textColor="#353535"
-                android:textSize="20dp"></TextView>
+                android:textSize="16dp"></TextView>
         </LinearLayout>
+
 
         <View
             android:layout_width="0dp"
@@ -252,7 +253,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
-                android:text="6"
+                android:text="0"
                 android:textColor="#353535"
                 android:textSize="20dp"></TextView>
         </LinearLayout>
@@ -270,5 +271,24 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="end"
+        android:gravity="center"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Available: "/>
+        <TextView
+            android:id="@+id/available_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="20"/>
+    </LinearLayout>
 
 </LinearLayout>

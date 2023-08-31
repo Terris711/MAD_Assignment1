@@ -7,14 +7,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
-import java.util.Arrays;
+
 
 public class InGameActivity extends AppCompatActivity {
     Fragment gridFragment;
@@ -31,6 +29,27 @@ public class InGameActivity extends AppCompatActivity {
 
         fragmentManager.beginTransaction().add(R.id.grid_fragment, gridFragment).commit();
         setGameFinishListener();
+        setAvailableMoveListener();
+    }
+
+    private void setAvailableMoveListener() {
+        liveData.availableMove.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                TextView availableMoveTV = findViewById(R.id.available_move);
+                availableMoveTV.setText(Integer.toString(integer));
+
+                int boardSize = liveData.liveBoard.getValue().length;
+                if (integer == boardSize * boardSize) return;
+                if (liveData.liveTurn.getValue() == Turn.O) {
+                    TextView tv = findViewById(R.id.player_one_count);
+                    tv.setText(Integer.toString(Integer.parseInt(tv.getText().toString()) + 1));
+                } else {
+                    TextView tv = findViewById(R.id.player_two_count);
+                    tv.setText(Integer.toString(Integer.parseInt(tv.getText().toString()) + 1));
+                }
+            }
+        });
     }
 
     private void setGameFinishListener() {
@@ -39,29 +58,9 @@ public class InGameActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     Dialog dialog = new Dialog(InGameActivity.this);
-                    dialog.setContentView(R.layout.game_finished_dialog);
+                    dialog.setContentView(R.layout.human_win);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.setCanceledOnTouchOutside(false);
-
-                    Button quitBtn = dialog.findViewById(R.id.offline_game_quit_btn);
-                    Button continueBtn = dialog.findViewById(R.id.offline_game_continue_btn);
-
-                    continueBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            liveData.isGameEnded.setValue(false);
-                            dialog.hide();
-                        }
-                    });
-
-                    quitBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent boardChoosingIntent = new Intent(getApplicationContext(), BoardChoosingAcitivity.class);
-                            startActivity(boardChoosingIntent);
-                        }
-                    });
-
                     dialog.show();
                 }
             }

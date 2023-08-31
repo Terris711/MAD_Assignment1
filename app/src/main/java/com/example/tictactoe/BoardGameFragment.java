@@ -40,6 +40,7 @@ public class BoardGameFragment extends Fragment {
         // Inflate the layout for this fragment
         liveData = new ViewModelProvider(getActivity()).get(GameStateViewModel.class);
         int size = liveData.liveBoard.getValue().length;
+        liveData.availableMove.setValue(size * size);
         if (size == 3) {
             root = inflater.inflate(R.layout.fragment_board_game3x3, container, false);
         } else if (size == 4) {
@@ -60,7 +61,12 @@ public class BoardGameFragment extends Fragment {
                         curImageView.setOnClickListener(null);
                         return;
                     }
+                    // decrease total available move
+                    liveData.decreaseAvailableMove();
+
                     TurnDetails turnDetails = liveData.play(curBox);
+
+
                     if (turnDetails.getTurn() == Turn.O) {
                         curImageView.setImageResource(R.drawable.zero_icon);
                     } else {

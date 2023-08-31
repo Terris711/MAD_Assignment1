@@ -4,13 +4,17 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.Stack;
+
 public class GameStateViewModel extends ViewModel {
     final MutableLiveData<Turn[][]> liveBoard = new MediatorLiveData<>();
     final  MutableLiveData<Turn> liveTurn = new MediatorLiveData<>();
     final MutableLiveData<Boolean> isGameEnded = new MediatorLiveData<>();
+    final MutableLiveData<Integer> availableMove = new MediatorLiveData<>();
 
 
     public GameStateViewModel() {
+
     }
 
     public TurnDetails play(int boxNumber) {
@@ -84,7 +88,10 @@ public class GameStateViewModel extends ViewModel {
     }
 
 
-
+    public void decreaseAvailableMove() {
+        int cur = availableMove.getValue();
+        availableMove.setValue(cur - 1);
+    }
 }
 
 
@@ -97,9 +104,6 @@ enum Turn {
 enum Status {
     Finished, ONGOING
 }
-
-
-
 
 enum BoardSize {
     ThreeXThree, FourXFour, FiveXFive;
