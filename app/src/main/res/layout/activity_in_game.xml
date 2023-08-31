@@ -46,7 +46,7 @@
 
 
             <ImageView
-                android:id="@+id/offline_game_seting_gifview"
+                android:id="@+id/seting_img"
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -82,7 +82,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/player_two_won_txt"
+                android:id="@+id/player_two_count"
                 android:layout_width="73dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
@@ -246,7 +246,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/player_one_win_count_txt"
+                android:id="@+id/player_one_count"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
