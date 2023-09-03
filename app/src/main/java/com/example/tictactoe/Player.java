@@ -9,6 +9,10 @@ public class Player {
         this.avatarImage = avatarImage;
     }
 
+    public boolean noAvatarImage(){
+        return avatarImage == 0;
+    }
+
     public String getName() {
         return name;
     }

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,32 +18,32 @@ public class UsernameFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView =  inflater.inflate(R.layout.fragment_username, container, false);
+        TextView whichPlayer = rootView.findViewById(R.id.whichPlayer);
         Button goToAvatarBtn = rootView.findViewById(R.id.goToAvatarBtn);
         EditText userName = rootView.findViewById(R.id.userName);
+        mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
+
+        //To see which player's profile it is making
+        if (mainActivityDataViewModel.getPlayerCount() == 1){
+            if (mainActivityDataViewModel.getTotalPlayer()==1){
+                whichPlayer.setText("Hi,");
+            }else {
+                whichPlayer.setText("Hi, Player 1");
+            }
+        }else {
+            whichPlayer.setText("Hi, Player 2");
+        }
+
 
         goToAvatarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
-                String ErrorUserName = userName.getText().toString();
                 //set the username of player 1
-                if (mainActivityDataViewModel.getPlayerCount()==1) {
-                    if (ErrorUserName.equals("")) {
-                        Toast.makeText(requireContext(), "Error: Please enter your name!", Toast.LENGTH_LONG).show();
-                    } else {
-                        mainActivityDataViewModel.getPlayer1().setName(userName.getText().toString());
-                        mainActivityDataViewModel.setClickedValue("avatar");
-                    }
-                }
+                mainActivityDataViewModel.checkPlayerName(mainActivityDataViewModel.getPlayer1(), 1, requireContext(), userName);
+
                 //set the username of player 2
-                if (mainActivityDataViewModel.getPlayerCount()==2){
-                    if (ErrorUserName.equals("")) {
-                        Toast.makeText(requireContext(), "Error: Please enter your name!", Toast.LENGTH_LONG).show();
-                    } else {
-                        mainActivityDataViewModel.getPlayer2().setName(userName.getText().toString());
-                        mainActivityDataViewModel.setClickedValue("avatar");
-                    }
-                }
+                mainActivityDataViewModel.checkPlayerName(mainActivityDataViewModel.getPlayer2(), 2, requireContext(), userName);
+
             }
         });
 

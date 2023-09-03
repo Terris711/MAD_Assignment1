@@ -1,5 +1,10 @@
 package com.example.tictactoe;
 
+
+import android.content.Context;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -38,5 +43,25 @@ public class MainActivityData extends ViewModel {
     public void setClickedValue(String value){
         clickedValue.setValue(value);
         System.out.println("test" + clickedValue.getValue());
+    }
+
+    public void checkPlayerAvatar(Player player, Context context, String errorMessage){
+        if (player.noAvatarImage()) {
+            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
+        } else {
+            setClickedValue("selected");
+        }
+    }
+
+    public void checkPlayerName(Player player, int num, Context context, EditText userName){
+        String ErrorUserName = userName.getText().toString();
+        if (getPlayerCount()==num) {
+            if (ErrorUserName.equals("")) {
+                Toast.makeText(context, "Please enter your name!", Toast.LENGTH_LONG).show();
+            } else {
+                player.setName(userName.getText().toString());
+                setClickedValue("avatar");
+            }
+        }
     }
 }
