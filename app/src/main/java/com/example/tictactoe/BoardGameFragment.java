@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BoardGameFragment#newInstance} factory method to
+ * Use the {@link BoardGameFragment#} factory method to
  * create an instance of this fragment.
  *
  */
@@ -73,7 +73,9 @@ public class BoardGameFragment extends Fragment {
                         curImageView.setImageResource(R.drawable.cross_icon);
                     }
                     if (turnDetails.getGameStatus() == Status.Finished) {
-                        liveData.isGameEnded.setValue(true);
+                        liveData.gameStatus.setValue(Status.Finished);
+                    } else if (turnDetails.getGameStatus() == Status.DRAW) {
+                        liveData.gameStatus.setValue(Status.DRAW);
                     }
                 }
             });
@@ -84,25 +86,32 @@ public class BoardGameFragment extends Fragment {
         setGameRestartListener();
         return root;
     }
+    public void undoMove() {
+        TurnHistory turnHistory = liveData.undo();
+        int size = liveData.liveBoard.getValue().length;
+        int boxNumber= turnHistory.x * size + turnHistory.y;
+        resetImageView(boxNumber);
+    }
 
     private void setGameRestartListener() {
-        liveData.isGameEnded.observe(getActivity(), new Observer<Boolean>() {
+        liveData.gameStatus.observe(getActivity(), new Observer<Status>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if (!aBoolean) {
+            public void onChanged(Status status) {
+                if (status == Status.ONGOING) {
                     int size = liveData.liveBoard.getValue().length;
                     liveData.liveBoard.setValue(new Turn[size][size]);
                     for (int i = 1; i <= size * size; i++) {
-                        int curBox = i;
-                        String stringId = "img_" + curBox;
-                        int id = root.getResources().getIdentifier(stringId, "id", root.getContext().getPackageName());
-                        ImageView curImageView = root.findViewById(id);
-                        curImageView.setImageDrawable(null);
+                        resetImageView(i);
                     }
                 }
             }
-        });
-    }
+        });}
 
+    private void resetImageView(int boxNumber) {
+        String stringId = "img_" + boxNumber;
+        int id = root.getResources().getIdentifier(stringId, "id", root.getContext().getPackageName());
+        ImageView curImageView = root.findViewById(id);
+        curImageView.setImageDrawable(null);
+    }
 
 }

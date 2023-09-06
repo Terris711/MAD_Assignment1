@@ -9,12 +9,14 @@ import java.util.Stack;
 public class GameStateViewModel extends ViewModel {
     final MutableLiveData<Turn[][]> liveBoard = new MediatorLiveData<>();
     final  MutableLiveData<Turn> liveTurn = new MediatorLiveData<>();
-    final MutableLiveData<Boolean> isGameEnded = new MediatorLiveData<>();
+    final MutableLiveData<Status> gameStatus = new MediatorLiveData<>();
     final MutableLiveData<Integer> availableMove = new MediatorLiveData<>();
+
+    final MutableLiveData<Stack<TurnHistory>> moveStack = new MediatorLiveData<>();
 
 
     public GameStateViewModel() {
-
+        moveStack.setValue(new Stack<>());
     }
 
     public TurnDetails play(int boxNumber) {
@@ -24,24 +26,76 @@ public class GameStateViewModel extends ViewModel {
         int row = (boxNumber - 1) / colLen;
         int col = (boxNumber - 1) % colLen;
         board[row][col] = turn;
-        Status gameStatus = checkEnd(row,col) ? Status.Finished : Status.ONGOING;
-        TurnDetails res = new TurnDetails(gameStatus, turn);
-        turn = turn == Turn.X ? Turn.O : Turn.X;
+        Status gameStatus = checkEnd(row,col) ? Status.Finished : Status.ONGOING; // Status finished if game end else status ongoing
+        if (gameStatus == Status.ONGOING && availableMove.getValue() == 0) {
+            gameStatus = Status.DRAW;
 
+        }
+        TurnDetails res = new TurnDetails(gameStatus, turn);
+        swapTurn();
         liveBoard.setValue(board);
-        liveTurn.setValue(turn);
+        moveStack.getValue().add(new TurnHistory(row, col));
         return res;
+    }
+
+    private void swapTurn() {
+        Turn turn = liveTurn.getValue();
+        turn = (turn == Turn.X) ? Turn.O : Turn.X;
+        liveTurn.setValue(turn);
     }
 
     private boolean checkEnd(int row, int col) {
         return
                 checkVertical(row, col) ||
-                        checkHorizontal(row,col);
+                        checkHorizontal(row,col)
+                || checkDiagonal(row, col);
     }
 
     private boolean checkDiagonal(int row, int col) {
+        Turn[][] board = liveBoard.getValue();
+        Turn cur = board[row][col];
+
+        // check main diagonal
+        if (row == col) {
+            if (row - 2 >= 0
+                    && cur == board[row - 1][col - 1]
+                    && cur == board[row - 2][col - 2]) {
+                return true;
+            }
+            if (row + 2 < board.length
+                    && cur == board[row + 1][col + 1]
+                    && cur == board[row + 2][col + 2]) {
+                return true;
+            }
+            if (row > 0 && row < board.length - 1
+                    && cur == board[row - 1][col - 1]
+                    && cur == board[row + 1][col + 1]) {
+                return true;
+            }
+        }
+
+        // check anti-diagonal
+        if (row + col == board.length - 1) {
+            if (row - 2 >= 0
+                    && cur == board[row - 1][col + 1]
+                    && cur == board[row - 2][col + 2]) {
+                return true;
+            }
+            if (row + 2 < board.length
+                    && cur == board[row + 1][col - 1]
+                    && cur == board[row + 2][col - 2]) {
+                return true;
+            }
+            if (row > 0 && row < board.length - 1
+                    && cur == board[row - 1][col + 1]
+                    && cur == board[row + 1][col - 1]) {
+                return true;
+            }
+        }
+
         return false;
     }
+
 
     private boolean checkHorizontal(int row, int col) {
         Turn[][] board = liveBoard.getValue();
@@ -92,6 +146,21 @@ public class GameStateViewModel extends ViewModel {
         int cur = availableMove.getValue();
         availableMove.setValue(cur - 1);
     }
+
+    public void restartGame() {
+        int size = liveBoard.getValue().length;
+        liveBoard.setValue(new Turn[size][size]);
+        availableMove.setValue(size * size);
+        gameStatus.setValue(Status.ONGOING);
+    }
+
+    public TurnHistory undo() {
+        TurnHistory turnHistory = moveStack.getValue().pop();
+        liveBoard.getValue()[turnHistory.x][turnHistory.y] = null;
+        swapTurn();
+        availableMove.setValue(availableMove.getValue() + 1);
+        return turnHistory;
+    }
 }
 
 
@@ -102,7 +171,7 @@ enum Turn {
 }
 
 enum Status {
-    Finished, ONGOING
+    Finished, ONGOING, DRAW;
 }
 
 enum BoardSize {

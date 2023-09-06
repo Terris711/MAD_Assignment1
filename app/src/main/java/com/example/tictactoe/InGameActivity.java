@@ -7,15 +7,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 
 public class InGameActivity extends AppCompatActivity {
-    Fragment gridFragment;
+    BoardGameFragment gridFragment;
     GameStateViewModel liveData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,17 @@ public class InGameActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().add(R.id.grid_fragment, gridFragment).commit();
         setGameFinishListener();
         setAvailableMoveListener();
+        setUndoListener();
+    }
+
+    private void setUndoListener() {
+        ImageView undoButton = findViewById(R.id.undo_button);
+        undoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gridFragment.undoMove();
+            }
+        });
     }
 
     private void setAvailableMoveListener() {
@@ -53,19 +68,46 @@ public class InGameActivity extends AppCompatActivity {
     }
 
     private void setGameFinishListener() {
-        liveData.isGameEnded.observe(this, new Observer<Boolean>() {
+        liveData.gameStatus.observe(this, new Observer<Status>() {
             @Override
-            public void onChanged(Boolean aBoolean) {
-                if (aBoolean) {
-                    Dialog dialog = new Dialog(InGameActivity.this);
+            public void onChanged(Status status) {
+                Dialog dialog = new Dialog(InGameActivity.this);
+
+                if (status == Status.DRAW) {
+                    dialog.setContentView(R.layout.match_draw);
+                } else if (status == Status.Finished) {
                     dialog.setContentView(R.layout.human_win);
-                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.show();
+                } else {
+                    return; // don't show dialog when the game status is ONGOING
                 }
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.show();
+                Button quitButton = dialog.findViewById(R.id.quit_button);
+                Button continueButton = dialog.findViewById(R.id.continue_button);
+                continueButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        liveData.restartGame();
+                        dialog.cancel();
+                    }
+                });
+
+                quitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), BoardChoosingAcitivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+
+
             }
         });
     }
+
+
 
     private void setupGridFragment() {
         BoardSize boardSize =  (BoardSize) getIntent().getExtras().get(BoardChoosingAcitivity.BOARD_SIZE_KEY);
@@ -80,6 +122,8 @@ public class InGameActivity extends AppCompatActivity {
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();
     }
+
+
 
 
 }
