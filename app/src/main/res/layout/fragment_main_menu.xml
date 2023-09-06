@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wallpapertest" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:fontFamily="@font/arcade2"
+        android:text="Tic Tac Toe"
+        android:textColor="#FF5722"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/btnPlayerVsPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/arcade2"
+        android:text="Player Vs Player" />
+
+    <Button
+        android:id="@+id/btnPlayerVsAI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPlayerVsPlayer"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/arcade2"
+        android:text="@string/player_vs_ai" />
+
+    <Button
+        android:id="@+id/btnUserCustomization"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnPlayerVsAI"
+        android:fontFamily="@font/arcade2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="125dp"
+        android:text="User Customization" />
+
+
+</RelativeLayout>
