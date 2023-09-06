@@ -35,14 +35,20 @@ public class InGameActivity extends AppCompatActivity {
         setGameFinishListener();
         setAvailableMoveListener();
         setUndoListener();
+        setGameStatsListener();
     }
+
+
 
     private void setUndoListener() {
         ImageView undoButton = findViewById(R.id.undo_button);
         undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gridFragment.undoMove();
+                if (!liveData.moveStack.getValue().isEmpty()) {
+                    gridFragment.undoMove();
+
+                }
             }
         });
     }
@@ -53,16 +59,33 @@ public class InGameActivity extends AppCompatActivity {
             public void onChanged(Integer integer) {
                 TextView availableMoveTV = findViewById(R.id.available_move);
                 availableMoveTV.setText(Integer.toString(integer));
-
                 int boardSize = liveData.liveBoard.getValue().length;
-                if (integer == boardSize * boardSize) return;
+                int moveDone = boardSize * boardSize - liveData.availableMove.getValue();
+                TextView tv = findViewById(R.id.player_one_count);
+                TextView tv2 = findViewById(R.id.player_two_count);
+                int p1Count = moveDone / 2;
+                int p2Count = moveDone / 2;
                 if (liveData.liveTurn.getValue() == Turn.O) {
-                    TextView tv = findViewById(R.id.player_one_count);
-                    tv.setText(Integer.toString(Integer.parseInt(tv.getText().toString()) + 1));
+                    p1Count += moveDone % 2;
                 } else {
-                    TextView tv = findViewById(R.id.player_two_count);
-                    tv.setText(Integer.toString(Integer.parseInt(tv.getText().toString()) + 1));
+                    p2Count += moveDone % 2;
                 }
+                tv.setText(Integer.toString(p1Count));
+                tv2.setText(Integer.toString(p2Count));
+
+            }
+        });
+    }
+    private void setGameStatsListener() {
+        liveData.gameStats.observe(this, new Observer<GameStats>() {
+            @Override
+            public void onChanged(GameStats gameStats) {
+                TextView winCount1 = findViewById(R.id.p1_win_count);
+                TextView winCount2 = findViewById(R.id.p2_win_count);
+                TextView drawCount = findViewById(R.id.draw_count);
+                winCount1.setText(Integer.toString(gameStats.winCount1));
+                winCount2.setText(Integer.toString(gameStats.winCount2));
+                drawCount.setText(Integer.toString(gameStats.drawCount));
             }
         });
     }
@@ -75,11 +98,19 @@ public class InGameActivity extends AppCompatActivity {
 
                 if (status == Status.DRAW) {
                     dialog.setContentView(R.layout.match_draw);
+                    liveData.gameStats.getValue().drawCount++;
                 } else if (status == Status.Finished) {
                     dialog.setContentView(R.layout.human_win);
+                    if (liveData.liveTurn.getValue() == Turn.O) {
+                        liveData.gameStats.getValue().winCount2++;
+                    } else {
+                        liveData.gameStats.getValue().winCount1++;
+                    }
                 } else {
                     return; // don't show dialog when the game status is ONGOING
                 }
+                liveData.gameStats.setValue(liveData.gameStats.getValue());
+
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCanceledOnTouchOutside(false);
                 dialog.show();
@@ -89,6 +120,7 @@ public class InGameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         liveData.restartGame();
+                        resetMoveCount();
                         dialog.cancel();
                     }
                 });
@@ -98,6 +130,7 @@ public class InGameActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), BoardChoosingAcitivity.class);
                         startActivity(intent);
+
                     }
                 });
 
@@ -107,8 +140,13 @@ public class InGameActivity extends AppCompatActivity {
         });
     }
 
+    private void resetMoveCount() {
+        TextView p1Count = findViewById(R.id.player_one_count);
+        TextView p2Count = findViewById(R.id.player_two_count);
+        p1Count.setText("0");
+        p2Count.setText("0");
 
-
+    }
     private void setupGridFragment() {
         BoardSize boardSize =  (BoardSize) getIntent().getExtras().get(BoardChoosingAcitivity.BOARD_SIZE_KEY);
         if (boardSize == BoardSize.ThreeXThree) {

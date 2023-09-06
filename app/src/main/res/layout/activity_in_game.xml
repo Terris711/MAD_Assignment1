@@ -55,12 +55,31 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="start"
+        android:gravity="center"
+        android:layout_marginVertical="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Available: "/>
+        <TextView
+            android:id="@+id/available_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="20"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="70dp"
+
         android:orientation="horizontal">
 
         <View
@@ -94,10 +113,22 @@
         </LinearLayout>
 
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"></View>
+        <com.uzairiqbal.circulartimerview.CircularTimerView
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:progressColor="#000"
+            app:backgroundColor="#e76130"
+            app:progressBackgroundColor="#eee"
+            app:backgroundWidth="8"
+            app:isClockwise="true"
+            app:textSize="18sp"
+            app:prefix="Time Left "
+            app:suffix=" sec"
+            app:progressText="Time Remaining..."
+            app:maxValue="100"
+            app:startingPoint="bottom"
+            app:progressTextColor="#eee"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -270,25 +301,58 @@
 
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="end"
-        android:gravity="center"
-        >
-        <TextView
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Available: "/>
-        <TextView
-            android:id="@+id/available_move"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="P1 win count: "/>
+            <TextView
+                android:id="@+id/p1_win_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="20"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="P2 win count: "/>
+            <TextView
+                android:id="@+id/p2_win_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="0"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Draw: "/>
+            <TextView
+                android:id="@+id/draw_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="0"/>
+        </LinearLayout>
+
+
+
     </LinearLayout>
+
 
 </LinearLayout>

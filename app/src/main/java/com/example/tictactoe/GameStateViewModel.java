@@ -14,9 +14,12 @@ public class GameStateViewModel extends ViewModel {
 
     final MutableLiveData<Stack<TurnHistory>> moveStack = new MediatorLiveData<>();
 
+    final MutableLiveData<GameStats> gameStats = new MediatorLiveData<>();
+
 
     public GameStateViewModel() {
         moveStack.setValue(new Stack<>());
+        gameStats.setValue(new GameStats()) ;
     }
 
     public TurnDetails play(int boxNumber) {

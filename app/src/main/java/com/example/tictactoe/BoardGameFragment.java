@@ -80,16 +80,13 @@ public class BoardGameFragment extends Fragment {
                 }
             });
         }
-
-
-
         setGameRestartListener();
         return root;
     }
     public void undoMove() {
         TurnHistory turnHistory = liveData.undo();
         int size = liveData.liveBoard.getValue().length;
-        int boxNumber= turnHistory.x * size + turnHistory.y;
+        int boxNumber= turnHistory.x * size + turnHistory.y + 1;
         resetImageView(boxNumber);
     }
 
