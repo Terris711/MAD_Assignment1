@@ -110,6 +110,28 @@
                 android:textColor="#353535"
                 android:textSize="20dp"></TextView>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/timer_o"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4.5"
+            android:gravity="center"
+
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Timer:"
+                ></TextView>
+            <TextView
+                android:id="@+id/count_down_number_o"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="0"/>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -242,10 +264,27 @@
         </LinearLayout>
 
 
-        <View
+        <LinearLayout
+            android:id="@+id/timer_x"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4.5"></View>
+            android:layout_weight="4.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Timer:"
+                ></TextView>
+            <TextView
+                android:id="@+id/count_down_number_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:text="0"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"

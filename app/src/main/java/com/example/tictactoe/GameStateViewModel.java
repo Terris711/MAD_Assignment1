@@ -41,7 +41,7 @@ public class GameStateViewModel extends ViewModel {
         return res;
     }
 
-    private void swapTurn() {
+    public void swapTurn() {
         Turn turn = liveTurn.getValue();
         turn = (turn == Turn.X) ? Turn.O : Turn.X;
         liveTurn.setValue(turn);

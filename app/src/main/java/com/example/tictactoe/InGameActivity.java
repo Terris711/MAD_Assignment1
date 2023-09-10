@@ -11,16 +11,21 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
 
 
 public class InGameActivity extends AppCompatActivity {
     BoardGameFragment gridFragment;
     GameStateViewModel liveData;
+    private CountDownTimer currentTimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +41,54 @@ public class InGameActivity extends AppCompatActivity {
         setAvailableMoveListener();
         setUndoListener();
         setGameStatsListener();
+        setTimerListener();
     }
 
+    private void setTimerListener() {
+        liveData.liveTurn.observe(this, new Observer<Turn>() {
+            @Override
+            public void onChanged(Turn turn) {
+                ViewGroup linearO = findViewById(R.id.timer_o);
+                ViewGroup linearX = findViewById(R.id.timer_x);
+
+                TextView tvO = findViewById(R.id.count_down_number_o);
+                TextView tvX = findViewById(R.id.count_down_number_x);
+
+                // Cancel the current timer if it's already running
+                if (currentTimer != null) {
+                    currentTimer.cancel();
+                }
+
+                if (turn == Turn.O) {
+                    linearX.setVisibility(View.INVISIBLE);
+                    linearO.setVisibility(View.VISIBLE);
+                    currentTimer = new CountDownTimer(5000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            tvO.setText(Integer.toString((int) millisUntilFinished / 1000));
+                        }
+
+                        public void onFinish() {
+                            liveData.swapTurn();
+                        }
+                    }.start();
+                } else {
+                    linearO.setVisibility(View.INVISIBLE);
+                    linearX.setVisibility(View.VISIBLE);
+                    currentTimer = new CountDownTimer(5000, 1000) {
+
+                        public void onTick(long millisUntilFinished) {
+                            tvX.setText(Integer.toString((int) millisUntilFinished / 1000));
+                        }
+
+                        public void onFinish() {
+                            liveData.swapTurn();
+                        }
+                    }.start();
+                }
+            }
+        });
+    }
 
 
     private void setUndoListener() {
