@@ -209,7 +209,6 @@ public class InGameActivity extends AppCompatActivity {
         TextView p2Count = findViewById(R.id.player_two_count);
         p1Count.setText("0");
         p2Count.setText("0");
-
     }
     private void setupGridFragment() {
         BoardSize boardSize =  (BoardSize) getIntent().getExtras().get(BoardChoosingAcitivity.BOARD_SIZE_KEY);
@@ -220,13 +219,10 @@ public class InGameActivity extends AppCompatActivity {
         } else {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
-        liveData.isAI.setValue(true);
+        liveData.isAI.setValue(false); // fix later to assign the right value to AI
         Turn turn = Turn.O; // fix later to assign turn to user choice
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();
     }
-
-
-
 
 }

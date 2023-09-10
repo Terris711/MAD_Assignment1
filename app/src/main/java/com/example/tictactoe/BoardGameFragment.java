@@ -51,6 +51,7 @@ public class BoardGameFragment extends Fragment {
             root = inflater.inflate(R.layout.fragment_board_game_fragment5x5, container, false);
         }
 
+
         for (int i = 1; i <= size * size; i++) {
             int curBox = i;
             String stringId = "img_" + curBox;
@@ -138,5 +139,7 @@ public class BoardGameFragment extends Fragment {
             });
         }
     }
+
+
 
 }
