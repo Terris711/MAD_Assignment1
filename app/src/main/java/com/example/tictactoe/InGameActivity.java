@@ -44,8 +44,28 @@ public class InGameActivity extends AppCompatActivity {
         setRestartGameListener();
         setGameStatsListener();
         setTimerListener();
+        setTurnColorListener();
 
     }
+
+    private void setTurnColorListener() {
+        ImageView profileButton = findViewById(R.id.player_one_img);
+        ImageView profileButton2 = findViewById(R.id.player_two_img); // Assuming you have a player_two_img for the second player
+
+        liveData.liveTurn.observe(this, new Observer<Turn>() {
+            @Override
+            public void onChanged(Turn turn) {
+                if (turn == Turn.O) {
+                    profileButton.setAlpha(1f);  // Fully visible
+                    profileButton2.setAlpha(0.5f);  // Half transparent
+                } else {
+                    profileButton.setAlpha(0.5f);  // Half transparent
+                    profileButton2.setAlpha(1f);  // Fully visible
+                }
+            }
+        });
+    }
+
 
     private void setRestartGameListener() {
         ImageView restartButton = findViewById(R.id.reset_button);
@@ -219,7 +239,7 @@ public class InGameActivity extends AppCompatActivity {
         } else {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
-        liveData.isAI.setValue(false); // fix later to assign the right value to AI
+        liveData.isAI.setValue(true); // fix later to assign the right value to AI
         Turn turn = Turn.O; // fix later to assign turn to user choice
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();
