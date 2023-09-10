@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -40,8 +41,20 @@ public class InGameActivity extends AppCompatActivity {
         setGameFinishListener();
         setAvailableMoveListener();
         setUndoListener();
+        setRestartGameListener();
         setGameStatsListener();
         setTimerListener();
+
+    }
+
+    private void setRestartGameListener() {
+        ImageView restartButton = findViewById(R.id.reset_button);
+        restartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                liveData.restartGame();
+            }
+        });
     }
 
     private void setTimerListener() {
@@ -207,6 +220,7 @@ public class InGameActivity extends AppCompatActivity {
         } else {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
+        liveData.isAI.setValue(true);
         Turn turn = Turn.O; // fix later to assign turn to user choice
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();

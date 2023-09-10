@@ -15,11 +15,13 @@ public class GameStateViewModel extends ViewModel {
     final MutableLiveData<Stack<TurnHistory>> moveStack = new MediatorLiveData<>();
 
     final MutableLiveData<GameStats> gameStats = new MediatorLiveData<>();
+    final MutableLiveData<Boolean> isAI = new MediatorLiveData<>();
 
 
     public GameStateViewModel() {
         moveStack.setValue(new Stack<>());
-        gameStats.setValue(new GameStats()) ;
+        gameStats.setValue(new GameStats());
+
     }
 
     public TurnDetails play(int boxNumber) {
@@ -163,6 +165,10 @@ public class GameStateViewModel extends ViewModel {
         swapTurn();
         availableMove.setValue(availableMove.getValue() + 1);
         return turnHistory;
+    }
+    public int calculateBoxNumber(int row, int col) {
+        int size = liveBoard.getValue().length;
+        return row * size + col + 1;
     }
 }
 

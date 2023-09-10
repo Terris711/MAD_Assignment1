@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link BoardGameFragment#} factory method to
@@ -66,7 +68,6 @@ public class BoardGameFragment extends Fragment {
 
                     TurnDetails turnDetails = liveData.play(curBox);
 
-
                     if (turnDetails.getTurn() == Turn.O) {
                         curImageView.setImageResource(R.drawable.zero_icon);
                     } else {
@@ -80,13 +81,13 @@ public class BoardGameFragment extends Fragment {
                 }
             });
         }
+        aiPlay();
         setGameRestartListener();
         return root;
     }
     public void undoMove() {
         TurnHistory turnHistory = liveData.undo();
-        int size = liveData.liveBoard.getValue().length;
-        int boxNumber= turnHistory.x * size + turnHistory.y + 1;
+        int boxNumber= liveData.calculateBoxNumber(turnHistory.x, turnHistory.y);
         resetImageView(boxNumber);
     }
 
@@ -109,6 +110,33 @@ public class BoardGameFragment extends Fragment {
         int id = root.getResources().getIdentifier(stringId, "id", root.getContext().getPackageName());
         ImageView curImageView = root.findViewById(id);
         curImageView.setImageDrawable(null);
+    }
+    private void aiPlay() {
+        if (liveData.isAI.getValue()) {
+            liveData.liveTurn.observe(getActivity(), new Observer<Turn>() {
+                @Override
+                public void onChanged(Turn turn) {
+                    if (turn == Turn.X) {
+                        int size = liveData.liveBoard.getValue().length;
+                        int availableMove = new Random().nextInt(liveData.availableMove.getValue()) + 1;
+                        for (int i = 0; i < size; i++) {
+                            for (int j = 0; j < size; j++) {
+                                if (liveData.liveBoard.getValue()[i][j] == null) {
+                                    availableMove--;
+                                    if (availableMove == 0) {
+                                        int boxNumber = liveData.calculateBoxNumber(i, j);
+                                        String stringId = "img_" + boxNumber;
+                                        int id = root.getResources().getIdentifier(stringId, "id", root.getContext().getPackageName());
+                                        ImageView curImageView = root.findViewById(id);
+                                        curImageView.performClick();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
     }
 
 }
