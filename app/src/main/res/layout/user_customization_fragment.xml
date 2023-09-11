@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/setPlayer1Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arcade2"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:hint="Player 1 Username"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/setPlayer2Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setPlayer1Username"
+        android:fontFamily="@font/arcade2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="Player 2 Username"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/setPlayer2Username"
+        android:fontFamily="@font/arcade2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Update" />
+</RelativeLayout>
