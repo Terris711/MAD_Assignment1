@@ -156,7 +156,6 @@ public class InGameActivity extends AppCompatActivity {
                 }
                 tv.setText(Integer.toString(p1Count));
                 tv2.setText(Integer.toString(p2Count));
-
             }
         });
     }
@@ -217,9 +216,6 @@ public class InGameActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-
             }
         });
     }

@@ -119,7 +119,9 @@ public class BoardGameFragment extends Fragment {
                 public void onChanged(Turn turn) {
                     if (turn == Turn.X) {
                         int size = liveData.liveBoard.getValue().length;
-                        int availableMove = new Random().nextInt(liveData.availableMove.getValue()) + 1;
+                        int am = liveData.availableMove.getValue();
+                        if (am <= 0) return;
+                        int availableMove = new Random().nextInt(am) + 1;
                         for (int i = 0; i < size; i++) {
                             for (int j = 0; j < size; j++) {
                                 if (liveData.liveBoard.getValue()[i][j] == null) {
