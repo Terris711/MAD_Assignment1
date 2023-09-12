@@ -12,10 +12,10 @@ import com.example.tictactoe.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    UsernameFrag usernameFrag = new UsernameFrag();
     AvatarFrag avatarFrag = new AvatarFrag();
+    BoardChoosingFragment boardChoosingFragment = new BoardChoosingFragment();
     SelectedAvatarFrag selectedAvatarFrag = new SelectedAvatarFrag();
-    VersusWithWho versusWithWho = new VersusWithWho();
+    MainActivityData mainActivityDataViewModel;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
@@ -23,46 +23,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadVersusWithWho();
+        mainActivityDataViewModel = new ViewModelProvider(this).get(MainActivityData.class);
+        initialiseDataFromBundle();
 
-        MainActivityData mainActivityDataViewModel = new ViewModelProvider(this).get(MainActivityData.class);
+        loadAvatarFragment();
+
         mainActivityDataViewModel.getClicked().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String string) {
-                if(mainActivityDataViewModel.getClickedValue().equals("player")){
-                    loadVersusWithWho();
-                }
-                if(mainActivityDataViewModel.getClickedValue().equals("username")){
-                    loadUsernameFragment();
-                }
+
                 if(mainActivityDataViewModel.getClickedValue().equals("avatar")){
                     loadAvatarFragment();
                 }
                 if(mainActivityDataViewModel.getClickedValue().equals("selected")){
                     loadSelectedAvatarFrag();
                 }
+                if (mainActivityDataViewModel.getClicked().getValue().equals("boardChoosing")) {
+                    loadBoardChoosingFragment();
+                }
 
             }
         });
     }
-    private void loadVersusWithWho(){
-        Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
-        if(frag==null){
-            fragmentManager.beginTransaction().add(R.id.mainFrag,versusWithWho).commit();
+
+    private void initialiseDataFromBundle() {
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) return;
+        boolean isAi = extras.getBoolean("isAI");
+        String player1Name = extras.getString("player1Username");
+        String player2Name = extras.getString("player2Username");
+        if (isAi) {
+            mainActivityDataViewModel.setTotalPlayer(1);
+            mainActivityDataViewModel.setPlayerCount(1);
+            mainActivityDataViewModel.getPlayer1().setName(player1Name);
+        } else {
+            mainActivityDataViewModel.setTotalPlayer(2);
+            mainActivityDataViewModel.setPlayerCount(1);
+            mainActivityDataViewModel.getPlayer1().setName(player1Name);
+            mainActivityDataViewModel.getPlayer2().setName(player2Name);
         }
-        else{
-            fragmentManager.beginTransaction().replace(R.id.mainFrag,versusWithWho).commit();
-        }
+
     }
-    private void loadUsernameFragment(){
-        Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
-        if(frag==null){
-            fragmentManager.beginTransaction().add(R.id.mainFrag,usernameFrag).commit();
-        }
-        else{
-            fragmentManager.beginTransaction().replace(R.id.mainFrag,usernameFrag).commit();
-        }
-    }
+
 
     private void loadAvatarFragment(){
         Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
@@ -71,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             fragmentManager.beginTransaction().replace(R.id.mainFrag,avatarFrag).commit();
+        }
+    }
+    private void loadBoardChoosingFragment(){
+        Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
+        if(frag==null){
+            fragmentManager.beginTransaction().add(R.id.mainFrag,boardChoosingFragment).commit();
+        }
+        else{
+            fragmentManager.beginTransaction().replace(R.id.mainFrag,boardChoosingFragment).commit();
         }
     }
 

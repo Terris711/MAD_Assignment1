@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import com.example.tictactoe.choosing_avatar.BoardSize;
 import com.example.tictactoe.R;
 
 public class BoardChoosingAcitivity extends AppCompatActivity {

@@ -9,12 +9,14 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+
 public class MainActivityData extends ViewModel {
     private MutableLiveData<String> clickedValue;
     private Player player1;
     private Player player2;
     private int totalPlayer;
     private int playerCount;
+    private BoardSize boardSize;
     public MainActivityData() {
         clickedValue = new MediatorLiveData<String>();
         clickedValue.setValue("player");
@@ -49,8 +51,20 @@ public class MainActivityData extends ViewModel {
         if (player.noAvatarImage()) {
             Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
         } else {
-            setClickedValue("selected");
+            setClickedValue("boardChoosing");
         }
+    }
+
+    public void setClickedValue(MutableLiveData<String> clickedValue) {
+        this.clickedValue = clickedValue;
+    }
+
+    public BoardSize getBoardSize() {
+        return boardSize;
+    }
+
+    public void setBoardSize(BoardSize boardSize) {
+        this.boardSize = boardSize;
     }
 
     public void checkPlayerName(Player player, int num, Context context, EditText userName){

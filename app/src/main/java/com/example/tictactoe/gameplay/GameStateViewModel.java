@@ -183,6 +183,3 @@ enum Status {
     Finished, ONGOING, DRAW;
 }
 
-enum BoardSize {
-    ThreeXThree, FourXFour, FiveXFive;
-}

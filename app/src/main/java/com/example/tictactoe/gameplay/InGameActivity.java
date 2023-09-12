@@ -17,7 +17,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tictactoe.choosing_avatar.BoardSize;
 import com.example.tictactoe.R;
+import com.example.tictactoe.choosing_avatar.Player;
+import com.example.tictactoe.choosing_avatar.SelectedAvatarFrag;
 
 
 public class InGameActivity extends AppCompatActivity {
@@ -32,6 +35,7 @@ public class InGameActivity extends AppCompatActivity {
         liveData = new ViewModelProvider(this).get(GameStateViewModel.class);
 
         setupGridFragment();
+        setUpUserDetails();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -44,6 +48,22 @@ public class InGameActivity extends AppCompatActivity {
         setTimerListener();
         setTurnColorListener();
 
+    }
+
+    private void setUpUserDetails() {
+        Player player1 = (Player) getIntent().getSerializableExtra(SelectedAvatarFrag.PLAYER_1);
+        Player player2 = (Player) getIntent().getSerializableExtra(SelectedAvatarFrag.PLAYER_2);
+        ImageView player2Image = findViewById(R.id.player_two_img);
+        ImageView player1Image = findViewById(R.id.player_one_img);
+        TextView player1Name = findViewById(R.id.player_one_name_txt);
+        TextView player2Name = findViewById(R.id.player_two_name_txt);
+        player2Image.setImageResource(player2.getAvatarImage());
+        player2Name.setText(player2.getName());
+        player1Image.setImageResource(player1.getAvatarImage());
+        player1Name.setText(player1.getName());
+
+        // decide to enable AI
+        liveData.isAI.setValue(player2.getName().equals("AI"));
     }
 
     private void setTurnColorListener() {
@@ -233,7 +253,6 @@ public class InGameActivity extends AppCompatActivity {
         } else {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
-        liveData.isAI.setValue(true); // fix later to assign the right value to AI
         Turn turn = Turn.O; // fix later to assign turn to user choice
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();

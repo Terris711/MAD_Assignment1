@@ -13,16 +13,18 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.tictactoe.R;
+import com.example.tictactoe.gameplay.GameStateViewModel;
 
 public class MainMenuFragment extends Fragment {
 
     private TextView titleTextView;
     private Button playerVsPlayerButton;
     private Button playerVsAIButton;
-    private Button userCustomizationButton;
     private ImageView backgroundImage;
+    private SharedViewModel liveData;
     private int[] textColorsArray = {
             R.color.white, R.color.red, R.color.fuchsia, R.color.gold, R.color.green
     };
@@ -32,26 +34,23 @@ public class MainMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-
+        liveData = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
         // Find the TextView, Buttons, and ImageView in your fragment's layout
         titleTextView = view.findViewById(R.id.tvTitle);
         playerVsPlayerButton = view.findViewById(R.id.btnPlayerVsPlayer);
         playerVsAIButton = view.findViewById(R.id.btnPlayerVsAI);
-        userCustomizationButton = view.findViewById(R.id.btnUserCustomization);
 
         // Set dark background colors for the buttons
         playerVsPlayerButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.teal));
         playerVsAIButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.teal));
-        userCustomizationButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.olive));
-
         // Set up a click listener for the Player Vs Player button
-        playerVsAIButton.setOnClickListener(new View.OnClickListener() {
+        playerVsPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 PlayerVsPlayerFragment playerVsPlayerFragment = new PlayerVsPlayerFragment();
-
+                UserCustomizationFragment userCustomizationFragment = new UserCustomizationFragment();
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, playerVsPlayerFragment);
+                liveData.isAI.setValue(false);
+                transaction.replace(R.id.fragmentContainer, userCustomizationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -61,32 +60,18 @@ public class MainMenuFragment extends Fragment {
         playerVsAIButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PlayerVsAIFragment playerVsAIFragment = new PlayerVsAIFragment();
-
+                UserCustomizationFragment userCustomizationFragment = new UserCustomizationFragment();
+                liveData.isAI.setValue(true);
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, playerVsAIFragment);
+                transaction.replace(R.id.fragmentContainer, userCustomizationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
 
-        // Set up a click listener for the User Customization button
-        userCustomizationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create a new instance of the UserCustomizationFragment
-                UserCustomizationFragment userCustomizationFragment = new UserCustomizationFragment();
-
-                // Perform a fragment transaction to replace the current fragment with UserCustomizationFragment
-                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragmentContainer, userCustomizationFragment);
-                transaction.addToBackStack(null); // Add the transaction to the back stack
-                transaction.commit();
-            }
-        });
 
         // Start the color transition animation for the title text
-        animateTextColor();
+//        animateTextColor(); animate text color causing bug that doesn't let user customisation to go back
 
         // Retrieve player names from arguments and set button text
         Bundle args = getArguments();
