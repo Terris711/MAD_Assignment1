@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.choosing_avatar;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.tictactoe.R;
 
 public class MainActivity extends AppCompatActivity {
 

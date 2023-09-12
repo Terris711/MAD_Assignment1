@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.starting_page;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.tictactoe.R;
 
 public class MainMenuFragment extends Fragment {
 

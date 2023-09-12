@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.gameplay;
 
 public class GameStats {
     int winCount1 = 0;

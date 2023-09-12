@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.choosing_avatar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.tictactoe.R;
+import com.example.tictactoe.choosing_avatar.MainActivityData;
 
 public class UsernameFrag extends Fragment {
     MainActivityData mainActivityDataViewModel;

@@ -1,4 +1,7 @@
-package com.example.tictactoe;
+package com.example.tictactoe.gameplay;
+
+import com.example.tictactoe.gameplay.Status;
+import com.example.tictactoe.gameplay.Turn;
 
 public class TurnDetails {
     private Status gameStatus;

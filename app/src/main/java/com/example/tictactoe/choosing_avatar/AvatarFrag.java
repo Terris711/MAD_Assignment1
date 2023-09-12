@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.choosing_avatar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.tictactoe.R;
 
 import java.util.ArrayList;
 import java.util.List;

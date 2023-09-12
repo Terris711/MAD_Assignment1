@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.gameplay;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;

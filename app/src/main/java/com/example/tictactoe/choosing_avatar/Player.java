@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.choosing_avatar;
 
 public class Player {
     private String name;

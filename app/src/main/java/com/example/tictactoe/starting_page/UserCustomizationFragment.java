@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.starting_page;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.tictactoe.MainMenuFragment;
-import com.example.tictactoe.SharedViewModel;
+import com.example.tictactoe.R;
 
 public class UserCustomizationFragment extends Fragment {
 

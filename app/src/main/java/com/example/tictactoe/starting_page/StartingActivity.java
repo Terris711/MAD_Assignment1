@@ -1,7 +1,10 @@
-package com.example.tictactoe;
+package com.example.tictactoe.starting_page;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tictactoe.R;
+import com.example.tictactoe.starting_page.MainMenuFragment;
 
 public class StartingActivity extends AppCompatActivity {
 

@@ -7,7 +7,7 @@
     android:weightSum="10"
     android:background="#F6F6F6"
     android:layout_height="match_parent"
-    tools:context=".InGameActivity">
+    tools:context=".gameplay.InGameActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

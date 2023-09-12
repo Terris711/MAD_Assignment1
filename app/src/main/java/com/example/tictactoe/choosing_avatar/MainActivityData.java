@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.choosing_avatar;
 
 
 import android.content.Context;
