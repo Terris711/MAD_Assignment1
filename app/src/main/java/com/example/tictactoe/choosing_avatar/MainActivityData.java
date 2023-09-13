@@ -48,11 +48,12 @@ public class MainActivityData extends ViewModel {
         System.out.println("test" + clickedValue.getValue());
     }
 
-    public void checkPlayerAvatar(Player player, Context context, String errorMessage){
+    public void checkPlayerAvatar(Player player, Context context, String pageName, int num){
         if (player.noAvatarImage()) {
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Please choose " + player.getName()+ "'s avatar",Toast.LENGTH_LONG).show();
         } else {
-            setClickedValue("boardChoosing");
+            setPlayerCount(num);
+            setClickedValue(pageName);
         }
     }
 

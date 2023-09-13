@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ public class AvatarFrag extends Fragment implements SelectListener {
     List<Avatar> avatarList;
     RecyclerView.LayoutManager layoutManager;
     MainActivityData mainActivityDataViewModel;
+    TextView chooseAvatarText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,34 +51,35 @@ public class AvatarFrag extends Fragment implements SelectListener {
         programAdapter = new ProgramAdapter(requireContext(), avatarList, this);
         recyclerView.setAdapter(programAdapter);
 
+        chooseAvatarText = rootView.findViewById(R.id.chooseAvatarText);
+
         Button goToNextBtn = rootView.findViewById(R.id.goToNextBtn);
         mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
+
+        chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getPlayer1().getName() + "'s Avatar");
 
         goToNextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //user vs AI
-                if (mainActivityDataViewModel.getTotalPlayer()==1) {
+                if (mainActivityDataViewModel.getTotalPlayer() == 1) {
                     //check if user sets an avatar and go to the next page
-                    mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), requireContext(), "Please choose your avatar!");
+                    chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getPlayer1().getName() + "'s Avatar");
+                    mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), requireContext(), "boardChoosing", 1);
                 }
 
                 //player1 vs player2
                 if (mainActivityDataViewModel.getTotalPlayer() == 2) {
                     //check if user sets an avatar of player 1 and go to the username page to set an avatar of player 2
                     if (mainActivityDataViewModel.getPlayerCount() == 1) {
-                        if (mainActivityDataViewModel.getPlayer1().noAvatarImage()) {
-                            Toast.makeText(requireContext(), "Please choose player 1 avatar!", Toast.LENGTH_LONG).show();
-                        } else {
-                            mainActivityDataViewModel.setClickedValue("username");
-                            mainActivityDataViewModel.setPlayerCount(2);
-                        }
+                        mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), requireContext(),  "avatar", 2);
                     }
                     //check if user sets an avatar of player 2 and go to the next page
-                    if (mainActivityDataViewModel.getPlayer2().getName() != "" && mainActivityDataViewModel.getPlayerCount() == 2) {
-                            mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer2(), requireContext(), "Please choose player 2 avatar!" );
-                        }
+                    if (mainActivityDataViewModel.getPlayerCount() == 2) {
+                        chooseAvatarText.setText("Choose " + mainActivityDataViewModel.getPlayer2().getName() + "'s Avatar");
+                        mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer2(), requireContext(),  "boardChoosing", 2);
                     }
+                }
             }
         });
 

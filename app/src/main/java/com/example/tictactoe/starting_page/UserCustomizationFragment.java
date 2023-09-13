@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -51,23 +53,25 @@ public class UserCustomizationFragment extends Fragment {
                 String player2Username = setPlayer2Username.getText().toString();
 
                 // Store the entered usernames in ViewModel
-                viewModel.setPlayer1Username(player1Username);
-                viewModel.setPlayer2Username(player2Username);
+                if (player1Username.equals("") || player2Username.equals("") ) {
+                    Toast.makeText(requireContext(), "Please enter your name!", Toast.LENGTH_LONG).show();
+                }else {
 
-                // Navigate back to the MainMenuFragment
-                MainMenuFragment mainMenuFragment = new MainMenuFragment();
+                    // Navigate back to the MainMenuFragment
+                    MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
-                // Pass player names to MainMenuFragment
-                Bundle bundle = new Bundle();
-                bundle.putString("player1Username", player1Username);
-                bundle.putString("player2Username", player2Username);
-                bundle.putBoolean("isAI", liveData.isAI.getValue());
-                mainMenuFragment.setArguments(bundle);
+                    // Pass player names to MainMenuFragment
+                    Bundle bundle = new Bundle();
+                    bundle.putString("player1Username", player1Username);
+                    bundle.putString("player2Username", player2Username);
+                    bundle.putBoolean("isAI", liveData.isAI.getValue());
+                    mainMenuFragment.setArguments(bundle);
 
-                // Go to avatar choosing activity
-                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                    // Go to avatar choosing activity
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
 
