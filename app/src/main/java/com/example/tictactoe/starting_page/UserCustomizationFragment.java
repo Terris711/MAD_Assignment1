@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -51,10 +52,11 @@ public class UserCustomizationFragment extends Fragment {
             public void onClick(View v) {
                 String player1Username = setPlayer1Username.getText().toString();
                 String player2Username = setPlayer2Username.getText().toString();
+                TextView nameError = view.findViewById(R.id.nameError);
 
                 // Store the entered usernames in ViewModel
                 if (player1Username.equals("") || player2Username.equals("") ) {
-                    Toast.makeText(requireContext(), "Please enter your name!", Toast.LENGTH_LONG).show();
+                    nameError.setText("Please enter your name");
                 }else {
 
                     // Navigate back to the MainMenuFragment
