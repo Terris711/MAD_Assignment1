@@ -58,30 +58,22 @@
         android:layout_width="290dp"
         android:layout_height="52dp"
         android:text="Customize Symbols"
-        app:layout_constraintBottom_toTopOf="@+id/button_main_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.939" />
 
-    <Button
-        android:id="@+id/button_main_menu"
-        android:layout_width="290dp"
-        android:layout_height="52dp"
-        android:text="Main Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="49dp"
         android:layout_height="51dp"
-        app:srcCompat="@drawable/settings_gif"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="4dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/settings_gif" />
 </androidx.constraintlayout.widget.ConstraintLayout>

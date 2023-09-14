@@ -47,7 +47,19 @@ public class InGameActivity extends AppCompatActivity {
         setGameStatsListener();
         setTimerListener();
         setTurnColorListener();
+        setSettingButtonHandler();
 
+    }
+
+    private void setSettingButtonHandler() {
+        ImageView imageView = findViewById(R.id.seting_img);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setUpUserDetails() {
