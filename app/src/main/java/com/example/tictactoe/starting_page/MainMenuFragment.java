@@ -61,8 +61,8 @@ public class MainMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 UserCustomizationFragment userCustomizationFragment = new UserCustomizationFragment();
-                liveData.isAI.setValue(true);
                 FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                liveData.isAI.setValue(true);
                 transaction.replace(R.id.fragmentContainer, userCustomizationFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();

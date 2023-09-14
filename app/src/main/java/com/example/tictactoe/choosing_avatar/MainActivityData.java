@@ -2,9 +2,7 @@ package com.example.tictactoe.choosing_avatar;
 
 
 import android.content.Context;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,17 +13,20 @@ public class MainActivityData extends ViewModel {
     private MutableLiveData<String> clickedValue;
     private Player player1;
     private Player player2;
+
+    private Player modifyingPlayer;
     private int totalPlayer;
     private int playerCount;
     private int winCond;
     private BoardSize boardSize;
-    private String AIsymbol;
+    private int AIsymbol;
 
     public MainActivityData() {
         clickedValue = new MediatorLiveData<String>();
         clickedValue.setValue("player");
         this.player1 = new Player("",0);
         this.player2 = new Player("",0);
+        this.modifyingPlayer = this.player1;
         this.totalPlayer = totalPlayer;
         this.playerCount = playerCount;
         this.AIsymbol = AIsymbol;
@@ -41,6 +42,11 @@ public class MainActivityData extends ViewModel {
     }
     public Player getPlayer2() { return player2; }
     public void setPlayer2(Player player2) {this.player2 = player2; }
+
+    public Player getModifyingPlayer() { return modifyingPlayer; }
+
+    public void setModifyingPlayer(Player modifyingPlayer) { this.modifyingPlayer = modifyingPlayer; }
+
     public String getClickedValue(){
         return clickedValue.getValue();
     }
@@ -48,9 +54,9 @@ public class MainActivityData extends ViewModel {
         return clickedValue;
     }
 
-    public String getAIsymbol() { return AIsymbol; }
+    public int getAIsymbol() { return AIsymbol; }
 
-    public void setAIsymbol(String AIsymbol) { this.AIsymbol = AIsymbol; }
+    public void setAIsymbol(int AIsymbol) { this.AIsymbol = AIsymbol; }
 
     public void setClickedValue(String value){
         clickedValue.setValue(value);
@@ -61,22 +67,19 @@ public class MainActivityData extends ViewModel {
         if (player.noAvatarImage()) {
             avatarError.setText("Please choose " + player.getName()+ "'s avatar");
         } else {
-            setPlayerCount(num);
             setClickedValue(pageName);
         }
     }
-    public void playerVSAIsymbol(Player player, Context context,String sb1, String sb2 ){
+    public void playerVSAIsymbol(Player player, Context context, int sb1, int sb2 ){
         player.setSymbol(sb1);
         //set AI symbol
         setAIsymbol(sb2);
-        Toast.makeText(context,"AI's symbol is " + getAIsymbol(), Toast.LENGTH_SHORT).show();
     }
 
-    public void playerVSplayerSymbol(Player player1, Player player2, Context context, String sb1, String sb2){
+    public void playerVSplayerSymbol(Player player1, Player player2, Context context, int sb1, int sb2){
         player1.setSymbol(sb1);
         //set AI symbol
         player2.setSymbol(sb2);
-        Toast.makeText(context,player2.getName() + "'s symbol is " + player2.getSymbol(),Toast.LENGTH_SHORT).show();
     }
 
     public int getWinCond() {

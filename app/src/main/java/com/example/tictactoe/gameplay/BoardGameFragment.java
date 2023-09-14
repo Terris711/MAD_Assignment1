@@ -103,7 +103,8 @@ public class BoardGameFragment extends Fragment {
                     }
                 }
             }
-        });}
+        });
+    }
 
     private void resetImageView(int boxNumber) {
         String stringId = "img_" + boxNumber;

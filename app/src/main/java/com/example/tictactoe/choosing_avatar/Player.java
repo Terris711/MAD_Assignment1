@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Player implements Serializable {
     private String name;
     private int avatarImage;
-    private String symbol;
+    private int symbol;
 
     public Player (String name, int avatarImage){
         this.name = name;
@@ -33,7 +33,7 @@ public class Player implements Serializable {
         this.avatarImage = avatarImage;
     }
 
-    public String getSymbol() { return symbol; }
+    public int getSymbol() { return symbol; }
 
-    public void setSymbol(String symbol) { this.symbol = symbol; }
+    public void setSymbol(int symbol) { this.symbol = symbol; }
 }
