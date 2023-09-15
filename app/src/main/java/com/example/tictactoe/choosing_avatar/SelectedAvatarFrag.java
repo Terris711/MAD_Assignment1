@@ -23,7 +23,7 @@ public class SelectedAvatarFrag extends Fragment {
     public static final String WIN_CONDITION = "win_condition";
 
     View rootView;
-    MainActivityData mainActivityData;
+    MainActivityData mainActivityDataViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,26 +34,21 @@ public class SelectedAvatarFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView =  inflater.inflate(R.layout.fragment_selected_avatar, container, false);
-        mainActivityData = new ViewModelProvider(getActivity()).get(MainActivityData.class);
+        mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
         TextView boardSize = rootView.findViewById(R.id.board_size);
-        if (mainActivityData.getBoardSize() == BoardSize.ThreeXThree) {
+        if (mainActivityDataViewModel.getBoardSize() == BoardSize.ThreeXThree) {
             boardSize.setText("3 X 3");
-        } else if (mainActivityData.getBoardSize() == BoardSize.FourXFour) {
+        } else if (mainActivityDataViewModel.getBoardSize() == BoardSize.FourXFour) {
             boardSize.setText("4 X 4");
         } else {
             boardSize.setText("5 X 5");
         }
-        if (mainActivityData.getTotalPlayer()==1){
+        if (mainActivityDataViewModel.getTotalPlayer()==1){
             player1profile();
-            //AI profile
-            ImageView p2symbol = rootView.findViewById(R.id.p2symbol);
-            mainActivityData.getPlayer2().setName("AI");
-            p2symbol.setImageResource(mainActivityData.getAIsymbol());
-            mainActivityData.getPlayer2().setAvatarImage(R.drawable.avatar1);
-            player2profile();
+            AIprofile();
 
         }
-        if (mainActivityData.getTotalPlayer()==2){
+        if (mainActivityDataViewModel.getTotalPlayer()==2){
             player1profile();
             player2profile();
         }
@@ -62,10 +57,16 @@ public class SelectedAvatarFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), InGameActivity.class);
-                intent.putExtra(BOARD_SIZE_KEY, mainActivityData.getBoardSize());
-                intent.putExtra(PLAYER_1, mainActivityData.getPlayer1());
-                intent.putExtra(PLAYER_2, mainActivityData.getPlayer2());
-                intent.putExtra(WIN_CONDITION, mainActivityData.getWinCond());
+                Intent intent2 = new Intent(getActivity().getApplicationContext(), BoardChoosingFragment.class);
+                intent.putExtra(BOARD_SIZE_KEY, mainActivityDataViewModel.getBoardSize());
+                intent.putExtra(PLAYER_1, mainActivityDataViewModel.getPlayer1());
+                intent.putExtra(PLAYER_2, mainActivityDataViewModel.getPlayer2());
+                intent2.putExtra(PLAYER_1, mainActivityDataViewModel.getPlayer1());
+                intent2.putExtra(PLAYER_2, mainActivityDataViewModel.getPlayer2());
+                intent.putExtra(BOARD_SIZE_KEY, mainActivityDataViewModel.getBoardSize());
+                intent.putExtra(PLAYER_1, mainActivityDataViewModel.getPlayer1());
+                intent.putExtra(PLAYER_2, mainActivityDataViewModel.getPlayer2());
+                intent.putExtra(WIN_CONDITION, mainActivityDataViewModel.getWinCond());
                 startActivity(intent);
             }
         });
@@ -76,16 +77,28 @@ public class SelectedAvatarFrag extends Fragment {
         TextView playerName = rootView.findViewById(R.id.player1name);
         ImageView playerAvatar = rootView.findViewById(R.id.player1avatar);
         ImageView p1symbol = rootView.findViewById(R.id.p1symbol);
-        playerName.setText(mainActivityData.getPlayer1().getName());
-        playerAvatar.setImageResource(mainActivityData.getPlayer1().getAvatarImage());
-        p1symbol.setImageResource(mainActivityData.getPlayer1().getSymbol());
+        playerName.setText(mainActivityDataViewModel.getPlayer1().getName());
+        playerAvatar.setImageResource(mainActivityDataViewModel.getPlayer1().getAvatarImage());
+        p1symbol.setImageResource(mainActivityDataViewModel.getPlayer1().getSymbol());
     }
     private void player2profile() {
         TextView playerName = rootView.findViewById(R.id.player2name);
         ImageView playerAvatar = rootView.findViewById(R.id.player2avatar);
         ImageView p2symbol = rootView.findViewById(R.id.p2symbol);
-        playerName.setText(mainActivityData.getPlayer2().getName());
-        playerAvatar.setImageResource(mainActivityData.getPlayer2().getAvatarImage());
-        p2symbol.setImageResource(mainActivityData.getPlayer2().getSymbol());
+        playerName.setText(mainActivityDataViewModel.getPlayer2().getName());
+        playerAvatar.setImageResource(mainActivityDataViewModel.getPlayer2().getAvatarImage());
+        p2symbol.setImageResource(mainActivityDataViewModel.getPlayer2().getSymbol());
     }
+
+    private void AIprofile() {
+        TextView playerName = rootView.findViewById(R.id.player2name);
+        ImageView playerAvatar = rootView.findViewById(R.id.player2avatar);
+        ImageView p2symbol = rootView.findViewById(R.id.p2symbol);
+        mainActivityDataViewModel.getPlayer2().setName("AI");
+        playerName.setText(mainActivityDataViewModel.getPlayer2().getName());
+        mainActivityDataViewModel.getPlayer2().setAvatarImage(R.drawable.avatar1);
+        playerAvatar.setImageResource(mainActivityDataViewModel.getPlayer2().getAvatarImage());
+        p2symbol.setImageResource(mainActivityDataViewModel.getPlayer2().getSymbol());
+    }
+
 }

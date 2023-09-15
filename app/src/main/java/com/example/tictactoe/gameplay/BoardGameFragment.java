@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.tictactoe.R;
+import com.example.tictactoe.choosing_avatar.MainActivityData;
+import com.example.tictactoe.choosing_avatar.Player;
+import com.example.tictactoe.choosing_avatar.SelectedAvatarFrag;
 
 import java.util.Random;
 
@@ -67,13 +70,25 @@ public class BoardGameFragment extends Fragment {
                     }
                     // decrease total available move
                     liveData.decreaseAvailableMove();
+
                     TurnDetails turnDetails = liveData.play(curBox);
+
+                    Player player1 = (Player) getActivity().getIntent().getSerializableExtra(SelectedAvatarFrag.PLAYER_1);
+                    Player player2 = (Player) getActivity().getIntent().getSerializableExtra(SelectedAvatarFrag.PLAYER_2);
+                    //set players' symbols
                     if (turnDetails.getTurn() == Turn.O) {
-                        curImageView.setImageResource(R.drawable.zero_icon);
+                        curImageView.setImageResource(player1.getSymbol());
+                    } else {
+                        curImageView.setImageResource(player2.getSymbol());
                     }
-                    else {
-                        curImageView.setImageResource(R.drawable.cross_icon);
-                    }
+
+
+//                    if (turnDetails.getTurn() == Turn.O) {
+//                        curImageView.setImageResource(R.drawable.zero_icon);
+//                    }
+//                    else {
+//                        curImageView.setImageResource(R.drawable.cross_icon);
+//                    }
                     if (turnDetails.getGameStatus() == Status.Finished) {
                         liveData.gameStatus.setValue(Status.Finished);
                     } else if (turnDetails.getGameStatus() == Status.DRAW) {

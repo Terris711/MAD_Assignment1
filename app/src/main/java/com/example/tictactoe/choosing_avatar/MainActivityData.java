@@ -13,13 +13,11 @@ public class MainActivityData extends ViewModel {
     private MutableLiveData<String> clickedValue;
     private Player player1;
     private Player player2;
-
     private Player modifyingPlayer;
     private int totalPlayer;
     private int playerCount;
     private int winCond;
     private BoardSize boardSize;
-    private int AIsymbol;
 
     public MainActivityData() {
         clickedValue = new MediatorLiveData<String>();
@@ -29,7 +27,6 @@ public class MainActivityData extends ViewModel {
         this.modifyingPlayer = this.player1;
         this.totalPlayer = totalPlayer;
         this.playerCount = playerCount;
-        this.AIsymbol = AIsymbol;
     }
 
     public int getTotalPlayer() {return totalPlayer;}
@@ -54,13 +51,8 @@ public class MainActivityData extends ViewModel {
         return clickedValue;
     }
 
-    public int getAIsymbol() { return AIsymbol; }
-
-    public void setAIsymbol(int AIsymbol) { this.AIsymbol = AIsymbol; }
-
     public void setClickedValue(String value){
         clickedValue.setValue(value);
-        System.out.println("test" + clickedValue.getValue());
     }
 
     public void checkPlayerAvatar(Player player, String pageName, TextView avatarError){
@@ -70,12 +62,8 @@ public class MainActivityData extends ViewModel {
             setClickedValue(pageName);
         }
     }
-    public void playerVSAIsymbol(Player player1, int sb1, int sb2 ){
-        player1.setSymbol(sb1);
-        setAIsymbol(sb2);
-    }
 
-    public void playerVSplayerSymbol(Player player1, Player player2, int sb1, int sb2){
+    public void setPlayersSymbol(Player player1, Player player2, int sb1, int sb2){
         player1.setSymbol(sb1);
         player2.setSymbol(sb2);
     }

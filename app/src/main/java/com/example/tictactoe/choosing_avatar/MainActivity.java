@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         mainActivityDataViewModel = new ViewModelProvider(this).get(MainActivityData.class);
         initialiseDataFromBundle();
-
         loadAvatarFragment();
 
         mainActivityDataViewModel.getClicked().observe(this, new Observer<String>() {
