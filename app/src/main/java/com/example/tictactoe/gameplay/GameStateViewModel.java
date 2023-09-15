@@ -16,6 +16,7 @@ public class GameStateViewModel extends ViewModel {
 
     final MutableLiveData<GameStats> gameStats = new MediatorLiveData<>();
     final MutableLiveData<Boolean> isAI = new MediatorLiveData<>();
+    int winCond;
 
 
     public GameStateViewModel() {
@@ -60,43 +61,28 @@ public class GameStateViewModel extends ViewModel {
         Turn[][] board = liveBoard.getValue();
         Turn cur = board[row][col];
 
-        // check main diagonal
-        if (row == col) {
-            if (row - 2 >= 0
-                    && cur == board[row - 1][col - 1]
-                    && cur == board[row - 2][col - 2]) {
-                return true;
-            }
-            if (row + 2 < board.length
-                    && cur == board[row + 1][col + 1]
-                    && cur == board[row + 2][col + 2]) {
-                return true;
-            }
-            if (row > 0 && row < board.length - 1
-                    && cur == board[row - 1][col - 1]
-                    && cur == board[row + 1][col + 1]) {
-                return true;
-            }
+        int consecutiveCountMainDiagonal = 1;
+        int i, j;
+        for (i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] != cur) break;
+            consecutiveCountMainDiagonal++;
         }
+        for (i = row + 1, j = col + 1; i < board.length && j < board[i].length; i++, j++) {
+            if (board[i][j] != cur) break;
+            consecutiveCountMainDiagonal++;
+        }
+        if (consecutiveCountMainDiagonal >= winCond) return true;
 
-        // check anti-diagonal
-        if (row + col == board.length - 1) {
-            if (row - 2 >= 0
-                    && cur == board[row - 1][col + 1]
-                    && cur == board[row - 2][col + 2]) {
-                return true;
-            }
-            if (row + 2 < board.length
-                    && cur == board[row + 1][col - 1]
-                    && cur == board[row + 2][col - 2]) {
-                return true;
-            }
-            if (row > 0 && row < board.length - 1
-                    && cur == board[row - 1][col + 1]
-                    && cur == board[row + 1][col - 1]) {
-                return true;
-            }
+        int consecutiveCountAntiDiagonal = 1;
+        for (i = row - 1, j = col + 1; i >= 0 && j < board[i].length; i--, j++) {
+            if (board[i][j] != cur) break;
+            consecutiveCountAntiDiagonal++;
         }
+        for (i = row + 1, j = col - 1; i < board.length && j >= 0; i++, j--) {
+            if (board[i][j] != cur) break;
+            consecutiveCountAntiDiagonal++;
+        }
+        if (consecutiveCountAntiDiagonal >= winCond) return true;
 
         return false;
     }
@@ -104,46 +90,34 @@ public class GameStateViewModel extends ViewModel {
 
     private boolean checkHorizontal(int row, int col) {
         Turn[][] board = liveBoard.getValue();
-
         Turn cur = board[row][col];
-        if (col - 2 >= 0
-                &&  cur == board[row][col - 1]
-                && cur == board[row][col -2]) {
-            return true;
+        int consecutiveCount = 1;
+        for (int i = col - 1; i >= 0; i--) {
+            if (board[row][i] != cur) break;
+            consecutiveCount++;
         }
-        if (col + 2 < board.length
-                && cur == board[row][col + 1]
-                && cur == board[row][col + 2]) {
-            return true;
+        for (int i = col + 1; i < board.length; i++) {
+            if (board[row][i] != cur) break;
+            consecutiveCount++;
         }
-        if (col > 0 && col < board.length - 1
-                && cur == board[row][col - 1]
-                && cur == board[row][col + 1]) {
-            return true;
-        }
-        return false;
+        return consecutiveCount >= winCond;
     }
 
     private boolean checkVertical(int row, int col) {
         Turn[][] board = liveBoard.getValue();
-
         Turn cur = board[row][col];
-        if (row - 2 >= 0
-                && cur == board[row - 1][col]
-                && cur == board[row-2][col]) {
-            return true;
+        int consecutiveCount = 1;
+
+        for (int i = row - 1; i >= 0; i--) {
+            if (board[i][col] != cur) break;
+            consecutiveCount++;
         }
-        if (row + 2 < board.length
-                && cur == board[row + 1][col]
-                && cur == board[row + 2][col]) {
-            return true;
+        for (int i = row + 1; i < board.length; i++) {
+            if (board[i][col] != cur) break;
+            consecutiveCount++;
         }
-        if (row > 0 && row < board.length - 1
-                && cur == board[row - 1][col]
-                && cur == board[row+1][col]) {
-            return true;
-        }
-        return false;
+
+        return consecutiveCount >= winCond;
     }
 
 

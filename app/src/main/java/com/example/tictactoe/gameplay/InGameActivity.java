@@ -21,6 +21,7 @@ import com.example.tictactoe.choosing_avatar.BoardSize;
 import com.example.tictactoe.R;
 import com.example.tictactoe.choosing_avatar.Player;
 import com.example.tictactoe.choosing_avatar.SelectedAvatarFrag;
+import com.example.tictactoe.starting_page.StartingActivity;
 
 
 public class InGameActivity extends AppCompatActivity {
@@ -241,7 +242,7 @@ public class InGameActivity extends AppCompatActivity {
                 quitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), BoardChoosingAcitivity.class);
+                        Intent intent = new Intent(getApplicationContext(), StartingActivity.class);
                         startActivity(intent);
 
                     }
@@ -257,7 +258,7 @@ public class InGameActivity extends AppCompatActivity {
         p2Count.setText("0");
     }
     private void setupGridFragment() {
-        BoardSize boardSize =  (BoardSize) getIntent().getExtras().get(BoardChoosingAcitivity.BOARD_SIZE_KEY);
+        BoardSize boardSize =  (BoardSize) getIntent().getExtras().get(SelectedAvatarFrag.BOARD_SIZE_KEY);
         if (boardSize == BoardSize.ThreeXThree) {
             liveData.liveBoard.setValue(new Turn[3][3]);
         } else if (boardSize == BoardSize.FourXFour) {
@@ -266,6 +267,7 @@ public class InGameActivity extends AppCompatActivity {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
         Turn turn = Turn.O; // fix later to assign turn to user choice
+        liveData.winCond = getIntent().getExtras().getInt(SelectedAvatarFrag.WIN_CONDITION);
         liveData.liveTurn.setValue(turn);
         gridFragment = new BoardGameFragment();
     }

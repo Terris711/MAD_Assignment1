@@ -16,6 +16,7 @@ public class MainActivityData extends ViewModel {
     private Player player2;
     private int totalPlayer;
     private int playerCount;
+    private int winCond;
     private BoardSize boardSize;
     public MainActivityData() {
         clickedValue = new MediatorLiveData<String>();
@@ -57,6 +58,14 @@ public class MainActivityData extends ViewModel {
 
     public void setClickedValue(MutableLiveData<String> clickedValue) {
         this.clickedValue = clickedValue;
+    }
+
+    public int getWinCond() {
+        return winCond;
+    }
+
+    public void setWinCond(int winCond) {
+        this.winCond = winCond;
     }
 
     public BoardSize getBoardSize() {

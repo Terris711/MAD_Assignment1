@@ -79,6 +79,14 @@ public class BoardChoosingFragment extends Fragment {
                 } else {
                     mainActivityDataViewModel.setBoardSize(BoardSize.FiveXFive);
                 }
+                RadioGroup radioGroupWinCond = root.findViewById(R.id.radioGroup1);
+                if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_3) {
+                    mainActivityDataViewModel.setWinCond(3);
+                } else if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_4) {
+                    mainActivityDataViewModel.setWinCond(4);
+                } else {
+                    mainActivityDataViewModel.setWinCond(5);
+                }
                 mainActivityDataViewModel.setClickedValue("selected");
             }
         });

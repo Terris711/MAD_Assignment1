@@ -17,9 +17,11 @@ import com.example.tictactoe.choosing_avatar.MainActivityData;
 import com.example.tictactoe.gameplay.InGameActivity;
 
 public class SelectedAvatarFrag extends Fragment {
-    static final String BOARD_SIZE_KEY = "BOARD_SIZE";
+    public static final String BOARD_SIZE_KEY = "BOARD_SIZE";
     public static final String PLAYER_1 = "player_1";
     public static final String PLAYER_2 = "player_2";
+    public static final String WIN_CONDITION = "win_condition";
+
 
 
 
@@ -66,6 +68,7 @@ public class SelectedAvatarFrag extends Fragment {
                 intent.putExtra(BOARD_SIZE_KEY, mainActivityData.getBoardSize());
                 intent.putExtra(PLAYER_1, mainActivityData.getPlayer1());
                 intent.putExtra(PLAYER_2, mainActivityData.getPlayer2());
+                intent.putExtra(WIN_CONDITION, mainActivityData.getWinCond());
                 startActivity(intent);
             }
         });
