@@ -63,7 +63,7 @@ public class AvatarFrag extends Fragment implements SelectListener {
                 //user vs AI
                 if (mainActivityDataViewModel.getTotalPlayer() == 1) {
                     //set player 1 avatar and error handling
-                    mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), "boardChoosing", 1, avatarError);
+                    mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), "boardChoosing", avatarError);
                 }
 
                 //player1 vs player2

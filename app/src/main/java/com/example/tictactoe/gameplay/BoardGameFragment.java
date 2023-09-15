@@ -70,7 +70,8 @@ public class BoardGameFragment extends Fragment {
                     TurnDetails turnDetails = liveData.play(curBox);
                     if (turnDetails.getTurn() == Turn.O) {
                         curImageView.setImageResource(R.drawable.zero_icon);
-                    } else {
+                    }
+                    else {
                         curImageView.setImageResource(R.drawable.cross_icon);
                     }
                     if (turnDetails.getGameStatus() == Status.Finished) {
@@ -141,4 +142,5 @@ public class BoardGameFragment extends Fragment {
             });
         }
     }
+
 }

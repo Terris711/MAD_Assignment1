@@ -38,24 +38,24 @@ public class ChooseOXFrag extends Fragment {
         ox_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //set player 1 symbol (player vs AI)
                 RadioGroup radioGroup = rootView.findViewById(R.id.ox_radioGroup);
 
+                //set player 1 symbol (player vs AI)
                 if(mainActivityDataViewModel.getTotalPlayer() == 1) {
                     ox_textView.setText("Choose " +  mainActivityDataViewModel.getPlayer1().getName() + "'s symbol");
                     if (radioGroup.getCheckedRadioButtonId() == R.id.o_radioBtn) {
-                       mainActivityDataViewModel.playerVSAIsymbol(mainActivityDataViewModel.getPlayer1(),requireContext(), R.drawable.zero_icon, R.drawable.cross_icon);
+                       mainActivityDataViewModel.playerVSAIsymbol(mainActivityDataViewModel.getPlayer1(), R.drawable.zero_icon, R.drawable.cross_icon);
                     } else if (radioGroup.getCheckedRadioButtonId() == R.id.x_radioBtn) {
-                        mainActivityDataViewModel.playerVSAIsymbol(mainActivityDataViewModel.getPlayer1(),requireContext(), R.drawable.cross_icon, R.drawable.zero_icon);
+                        mainActivityDataViewModel.playerVSAIsymbol(mainActivityDataViewModel.getPlayer1(), R.drawable.cross_icon, R.drawable.zero_icon);
                     }
                 }
 
                 //set player 1 symbol ( player1 vs player2)
                 else if (mainActivityDataViewModel.getTotalPlayer() == 2){
                     if (radioGroup.getCheckedRadioButtonId() == R.id.o_radioBtn) {
-                        mainActivityDataViewModel.playerVSplayerSymbol(mainActivityDataViewModel.getPlayer1(), mainActivityDataViewModel.getPlayer2(), requireContext(), R.drawable.zero_icon, R.drawable.cross_icon);
+                        mainActivityDataViewModel.playerVSplayerSymbol(mainActivityDataViewModel.getPlayer1(), mainActivityDataViewModel.getPlayer2(), R.drawable.zero_icon, R.drawable.cross_icon);
                     } else if (radioGroup.getCheckedRadioButtonId() == R.id.x_radioBtn) {
-                        mainActivityDataViewModel.playerVSplayerSymbol(mainActivityDataViewModel.getPlayer1(), mainActivityDataViewModel.getPlayer2(), requireContext(),  R.drawable.cross_icon, R.drawable.zero_icon);
+                        mainActivityDataViewModel.playerVSplayerSymbol(mainActivityDataViewModel.getPlayer1(), mainActivityDataViewModel.getPlayer2(), R.drawable.cross_icon, R.drawable.zero_icon);
 
                     }
                 }

@@ -51,12 +51,12 @@
             <ImageView
                 android:layout_width="195dp"
                 android:layout_height="200dp"
-                android:src="@drawable/o_image" />
+                android:src="@drawable/zero_icon" />
 
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/x_image" />
+                android:src="@drawable/cross_icon" />
         </LinearLayout>
 
         <RadioGroup

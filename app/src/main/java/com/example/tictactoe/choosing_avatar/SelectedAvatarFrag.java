@@ -22,16 +22,12 @@ public class SelectedAvatarFrag extends Fragment {
     public static final String PLAYER_2 = "player_2";
     public static final String WIN_CONDITION = "win_condition";
 
-
-
-
-
     View rootView;
     MainActivityData mainActivityData;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -50,9 +46,10 @@ public class SelectedAvatarFrag extends Fragment {
         if (mainActivityData.getTotalPlayer()==1){
             player1profile();
             //AI profile
-            Player player2 = mainActivityData.getPlayer2();
-            player2.setName("AI");
-            player2.setAvatarImage(R.drawable.avatar1);
+            ImageView p2symbol = rootView.findViewById(R.id.p2symbol);
+            mainActivityData.getPlayer2().setName("AI");
+            p2symbol.setImageResource(mainActivityData.getAIsymbol());
+            mainActivityData.getPlayer2().setAvatarImage(R.drawable.avatar1);
             player2profile();
 
         }
@@ -73,22 +70,22 @@ public class SelectedAvatarFrag extends Fragment {
             }
         });
 
-
-
-
-
         return rootView;
     }
     private void player1profile(){
         TextView playerName = rootView.findViewById(R.id.player1name);
         ImageView playerAvatar = rootView.findViewById(R.id.player1avatar);
+        ImageView p1symbol = rootView.findViewById(R.id.p1symbol);
         playerName.setText(mainActivityData.getPlayer1().getName());
         playerAvatar.setImageResource(mainActivityData.getPlayer1().getAvatarImage());
+        p1symbol.setImageResource(mainActivityData.getPlayer1().getSymbol());
     }
     private void player2profile() {
         TextView playerName = rootView.findViewById(R.id.player2name);
         ImageView playerAvatar = rootView.findViewById(R.id.player2avatar);
+        ImageView p2symbol = rootView.findViewById(R.id.p2symbol);
         playerName.setText(mainActivityData.getPlayer2().getName());
         playerAvatar.setImageResource(mainActivityData.getPlayer2().getAvatarImage());
+        p2symbol.setImageResource(mainActivityData.getPlayer2().getSymbol());
     }
 }

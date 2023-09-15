@@ -63,22 +63,20 @@ public class MainActivityData extends ViewModel {
         System.out.println("test" + clickedValue.getValue());
     }
 
-    public void checkPlayerAvatar(Player player, String pageName, int num, TextView avatarError){
+    public void checkPlayerAvatar(Player player, String pageName, TextView avatarError){
         if (player.noAvatarImage()) {
             avatarError.setText("Please choose " + player.getName()+ "'s avatar");
         } else {
             setClickedValue(pageName);
         }
     }
-    public void playerVSAIsymbol(Player player, Context context, int sb1, int sb2 ){
-        player.setSymbol(sb1);
-        //set AI symbol
+    public void playerVSAIsymbol(Player player1, int sb1, int sb2 ){
+        player1.setSymbol(sb1);
         setAIsymbol(sb2);
     }
 
-    public void playerVSplayerSymbol(Player player1, Player player2, Context context, int sb1, int sb2){
+    public void playerVSplayerSymbol(Player player1, Player player2, int sb1, int sb2){
         player1.setSymbol(sb1);
-        //set AI symbol
         player2.setSymbol(sb2);
     }
 
