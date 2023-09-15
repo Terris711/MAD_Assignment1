@@ -81,6 +81,14 @@ public class BoardGameFragment extends Fragment {
                     } else {
                         curImageView.setImageResource(player2.getSymbol());
                     }
+
+
+//                    if (turnDetails.getTurn() == Turn.O) {
+//                        curImageView.setImageResource(R.drawable.zero_icon);
+//                    }
+//                    else {
+//                        curImageView.setImageResource(R.drawable.cross_icon);
+//                    }
                     if (turnDetails.getGameStatus() == Status.Finished) {
                         liveData.gameStatus.setValue(Status.Finished);
                     } else if (turnDetails.getGameStatus() == Status.DRAW) {
