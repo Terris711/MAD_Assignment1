@@ -32,7 +32,7 @@ public class ChooseOXFrag extends Fragment {
         Button ox_Btn = rootView.findViewById(R.id.ox_Btn);
         TextView ox_textView = rootView.findViewById(R.id.ox_textView);
 
-        //Print the username in the textView to indicate which player's symbol is being selected.
+        //Print player1 name in textview
         ox_textView.setText("Choose " +  mainActivityDataViewModel.getPlayer1().getName() + "'s symbol");
 
         ox_Btn.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,6 @@ public class ChooseOXFrag extends Fragment {
 
                 //set player 1 symbol (player vs AI)
                 if(mainActivityDataViewModel.getTotalPlayer() == 1) {
-                    ox_textView.setText("Choose " +  mainActivityDataViewModel.getPlayer1().getName() + "'s symbol");
                     if (radioGroup.getCheckedRadioButtonId() == R.id.o_radioBtn) {
                        mainActivityDataViewModel.playerVSAIsymbol(mainActivityDataViewModel.getPlayer1(), R.drawable.zero_icon, R.drawable.cross_icon);
                     } else if (radioGroup.getCheckedRadioButtonId() == R.id.x_radioBtn) {

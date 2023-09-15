@@ -1,5 +1,6 @@
 package com.example.tictactoe.choosing_avatar;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,12 +53,13 @@ public class AvatarFrag extends Fragment implements SelectListener {
         TextView chooseAvatarText = rootView.findViewById(R.id.chooseAvatarText);
         TextView avatarError = rootView.findViewById(R.id.avatarError);
         mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
-
         Button goToNextBtn = rootView.findViewById(R.id.goToNextBtn);
 
-        //Print the username in the textView to indicate which player's avatar is being selected.
+        //Print player 1 name in textview
         chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
+
         goToNextBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 //user vs AI
@@ -69,21 +71,24 @@ public class AvatarFrag extends Fragment implements SelectListener {
                 //player1 vs player2
                 if (mainActivityDataViewModel.getTotalPlayer() == 2) {
                     if (mainActivityDataViewModel.getModifyingPlayer().noAvatarImage()) {
+                        //error message
                         avatarError.setText("Please choose " + mainActivityDataViewModel.getModifyingPlayer().getName()+ "'s avatar");
                         return;
                     }
-
+                    //reset error message
                     avatarError.setText("");
+                    //player2
                     if (mainActivityDataViewModel.getPlayerCount() == 2) {
                         mainActivityDataViewModel.setClickedValue("boardChoosing");
                     }
-
+                    //player 1
                     if (mainActivityDataViewModel.getPlayerCount() == 1) {
                         mainActivityDataViewModel.setClickedValue("avatar");
                         mainActivityDataViewModel.setModifyingPlayer(mainActivityDataViewModel.getPlayer2());
                         mainActivityDataViewModel.setPlayerCount(2);
                     }
                 }
+                //print player 2 name in textview
                 chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
 
             }
