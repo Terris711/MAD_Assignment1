@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color when the button is pressed -->
+    <item android:color="#FFA07A" android:state_pressed="true" />
+
+    <!-- Color when the button is focused (via d-pad, trackball, etc.) -->
+    <item android:color="#FFB6C1" android:state_focused="true" />
+
+    <!-- Default color -->
+    <item android:color="#FFD700" />
+</selector>

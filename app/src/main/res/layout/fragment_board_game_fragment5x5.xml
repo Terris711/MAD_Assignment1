@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gameplay.BoardGameFragment">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:background="@drawable/grid55"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.85"
+            android:orientation="horizontal"
+            >
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="1"
+                android:id="@+id/img_1"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="2"
+                android:id="@+id/img_2"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="3"
+                android:id="@+id/img_3"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="6dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="3"
+                android:id="@+id/img_4"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="3"
+                android:id="@+id/img_5"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.85"
+            android:orientation="horizontal"
+            >
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="4"
+                android:id="@+id/img_6"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="5"
+                android:id="@+id/img_7"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="6"
+                android:id="@+id/img_8"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="6"
+                android:id="@+id/img_9"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="6"
+                android:id="@+id/img_10"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            >
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="7"
+                android:id="@+id/img_11"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="8"
+                android:id="@+id/img_12"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_13"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_14"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_15"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            >
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="7"
+                android:id="@+id/img_16"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="8"
+                android:id="@+id/img_17"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_18"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_19"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_20"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            >
+
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="7"
+                android:id="@+id/img_21"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="8"
+                android:id="@+id/img_22"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_23"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_24"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+            <ImageView
+                android:tag="9"
+                android:id="@+id/img_25"
+                android:layout_width="0dp"
+                android:layout_weight="3.1"
+                android:padding="15dp"
+                android:layout_height="match_parent"
+                ></ImageView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
