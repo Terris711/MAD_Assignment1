@@ -118,7 +118,7 @@ public class BoardGameFragment extends Fragment {
             liveData.liveTurn.observe(getActivity(), new Observer<Turn>() {
                 @Override
                 public void onChanged(Turn turn) {
-                    if (turn == Turn.X) {
+                    if (turn == Turn.X && liveData.gameStatus.getValue() == Status.ONGOING) {
                         int size = liveData.liveBoard.getValue().length;
                         int am = liveData.availableMove.getValue();
                         if (am <= 0) return;

@@ -162,7 +162,6 @@ public class InGameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!liveData.moveStack.getValue().isEmpty()) {
                     gridFragment.undoMove();
-
                 }
             }
         });
@@ -266,6 +265,7 @@ public class InGameActivity extends AppCompatActivity {
         } else {
             liveData.liveBoard.setValue(new Turn[5][5]);
         }
+        liveData.gameStatus.setValue(Status.ONGOING);
         Turn turn = Turn.O; // fix later to assign turn to user choice
         liveData.winCond = getIntent().getExtras().getInt(SelectedAvatarFrag.WIN_CONDITION);
         liveData.liveTurn.setValue(turn);
