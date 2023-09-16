@@ -67,9 +67,7 @@ public class BoardGameFragment extends Fragment {
                     }
                     // decrease total available move
                     liveData.decreaseAvailableMove();
-
                     TurnDetails turnDetails = liveData.play(curBox);
-
                     if (turnDetails.getTurn() == Turn.O) {
                         curImageView.setImageResource(R.drawable.zero_icon);
                     } else {
@@ -142,7 +140,4 @@ public class BoardGameFragment extends Fragment {
             });
         }
     }
-
-
-
 }
