@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/arcade2"
-            android:text="Go to next" />
+            android:text="select" />
 
         <TextView
             android:id="@+id/avatarError"
