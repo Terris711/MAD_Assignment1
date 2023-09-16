@@ -1,26 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent_123"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gameplay.BoardChoosingAcitivity">
+    tools:context=".choosing_avatar.MainActivity">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose your board size"
-        android:textSize="25dp"
+        android:layout_marginTop="36dp"
+        android:text="Choose your \nboard size: "
+        android:textSize="20dp"
         android:fontFamily="@font/arcade2"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -33,16 +31,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.313">
+        app:layout_constraintVertical_bias="0.056">
 
         <RadioButton
             android:id="@+id/board_33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3 x 3"
-            android:fontFamily="@font/arcade2"
-            android:textSize="15dp"
             android:checked="true"
+            android:text="3 x 3"
+            android:textSize="15dp"
+            android:fontFamily="@font/arcade2"
             android:textStyle="bold" />
 
         <RadioButton
@@ -64,15 +62,77 @@
             android:textStyle="bold" />
     </RadioGroup>
 
+
+    <TextView
+        android:id="@+id/win_condition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Win Condition \n(consecutive markers):"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:fontFamily="@font/arcade2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/play_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/win_condition"
+        app:layout_constraintVertical_bias="0.552">
+
+
+        <RadioButton
+            android:id="@+id/win_by_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="3"
+            android:textSize="15dp"
+            android:fontFamily="@font/arcade2"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/win_by_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textSize="15dp"
+            android:fontFamily="@font/arcade2"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/win_by_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="15dp"
+            android:fontFamily="@font/arcade2"
+            android:textStyle="bold" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select"
-        android:fontFamily="@font/arcade2"
+        android:layout_marginBottom="36dp"
+        android:text="Play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
