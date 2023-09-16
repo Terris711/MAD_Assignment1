@@ -5,7 +5,17 @@ public class GameStats {
     int winCount2 = 0;
     int drawCount = 0;
 
+    public float getWinPercentage1() {
+        float totalGamesPlayed = winCount1 + winCount2 + drawCount;
+        if (totalGamesPlayed == 0) return 0;
+        return (winCount1 / totalGamesPlayed) * 100;
+    }
 
+    public float getWinPercentage2() {
+        float totalGamesPlayed = winCount1 + winCount2 + drawCount;
+        if (totalGamesPlayed == 0) return 0;
+        return (winCount2 / totalGamesPlayed) * 100;
+    }
     public int getWinCount1() {
         return winCount1;
     }
