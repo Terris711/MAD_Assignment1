@@ -197,9 +197,15 @@ public class InGameActivity extends AppCompatActivity {
                 TextView winCount1 = findViewById(R.id.p1_win_count);
                 TextView winCount2 = findViewById(R.id.p2_win_count);
                 TextView drawCount = findViewById(R.id.draw_count);
+                TextView winpercentage1 = findViewById(R.id.p1_win_percent);
+                TextView winpercentage2 = findViewById(R.id.p2_win_percent);
+
                 winCount1.setText(Integer.toString(gameStats.winCount1));
                 winCount2.setText(Integer.toString(gameStats.winCount2));
                 drawCount.setText(Integer.toString(gameStats.drawCount));
+                winpercentage1.setText(String.format("%.2f %%", gameStats.getWinPercentage1()));
+                winpercentage2.setText(String.format("%.2f %%", gameStats.getWinPercentage2()));
+
             }
         });
     }

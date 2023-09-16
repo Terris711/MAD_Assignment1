@@ -5,25 +5,17 @@ public class GameStats {
     int winCount2 = 0;
     int drawCount = 0;
 
-    double winPercentage1 = 0;
-    double winPercentage2 = 0;
-
-    public double getWinPercentage1() {
-        return winPercentage1;
+    public float getWinPercentage1() {
+        float totalGamesPlayed = winCount1 + winCount2 + drawCount;
+        if (totalGamesPlayed == 0) return 0;
+        return (winCount1 / totalGamesPlayed) * 100;
     }
 
-    public void setWinPercentage1(double winPercentage1) {
-        this.winPercentage1 = winPercentage1;
+    public float getWinPercentage2() {
+        float totalGamesPlayed = winCount1 + winCount2 + drawCount;
+        if (totalGamesPlayed == 0) return 0;
+        return (winCount2 / totalGamesPlayed) * 100;
     }
-
-    public double getWinPercentage2() {
-        return winPercentage2;
-    }
-
-    public void setWinPercentage2(double winPercentage2) {
-        this.winPercentage2 = winPercentage2;
-    }
-
     public int getWinCount1() {
         return winCount1;
     }
