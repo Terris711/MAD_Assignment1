@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     SelectedAvatarFrag selectedAvatarFrag = new SelectedAvatarFrag();
     MainActivityData mainActivityDataViewModel;
     FragmentManager fragmentManager = getSupportFragmentManager();
+    ChooseOXFrag chooseOXFrag = new ChooseOXFrag();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         mainActivityDataViewModel = new ViewModelProvider(this).get(MainActivityData.class);
         initialiseDataFromBundle();
-
         loadAvatarFragment();
 
         mainActivityDataViewModel.getClicked().observe(this, new Observer<String>() {
@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (mainActivityDataViewModel.getClicked().getValue().equals("boardChoosing")) {
                     loadBoardChoosingFragment();
+                }
+                if (mainActivityDataViewModel.getClicked().getValue().equals("chooseOX")) {
+                    loadChooseOXFragment();
                 }
 
             }
@@ -92,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             fragmentManager.beginTransaction().replace(R.id.mainFrag,selectedAvatarFrag).commit();
+        }
+    }
+    private void loadChooseOXFragment(){
+        Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
+        if(frag==null){
+            fragmentManager.beginTransaction().add(R.id.mainFrag,chooseOXFrag).commit();
+        }
+        else{
+            fragmentManager.beginTransaction().replace(R.id.mainFrag,chooseOXFrag).commit();
         }
     }
 }

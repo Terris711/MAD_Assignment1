@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,6 +33,7 @@ public class UserCustomizationFragment extends Fragment {
         setPlayer1Username = view.findViewById(R.id.setPlayer1Username);
         setPlayer2Username = view.findViewById(R.id.setPlayer2Username);
         btnStartGame = view.findViewById(R.id.btnStartGame);
+        TextView nameError = view.findViewById(R.id.nameError);
 
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
@@ -43,34 +47,63 @@ public class UserCustomizationFragment extends Fragment {
 
         if (liveData.isAI.getValue()) {
             setPlayer2Username.setVisibility(View.GONE);
+            btnStartGame.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String player1Username = setPlayer1Username.getText().toString();
+
+                    if (player1Username.equals("")) {
+                        nameError.setText("Please enter your name");
+                    } else {
+
+                        // Navigate back to the MainMenuFragment
+                        MainMenuFragment mainMenuFragment = new MainMenuFragment();
+
+                        // Pass player names to MainMenuFragment
+                        Bundle bundle = new Bundle();
+                        bundle.putString("player1Username", player1Username);
+                        bundle.putBoolean("isAI", liveData.isAI.getValue());
+                        mainMenuFragment.setArguments(bundle);
+
+                        // Go to avatar choosing activity
+                        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+
+                    }
+                }});
+        }else {
+            btnStartGame.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String player1Username = setPlayer1Username.getText().toString();
+                    String player2Username = setPlayer2Username.getText().toString();
+
+
+                    // Store the entered usernames in ViewModel
+                    if (player1Username.equals("") || player2Username.equals("")) {
+                        nameError.setText("Please enter your name");
+                    } else {
+
+                        // Navigate back to the MainMenuFragment
+                        MainMenuFragment mainMenuFragment = new MainMenuFragment();
+
+                        // Pass player names to MainMenuFragment
+                        Bundle bundle = new Bundle();
+                        bundle.putString("player1Username", player1Username);
+                        bundle.putString("player2Username", player2Username);
+                        bundle.putBoolean("isAI", liveData.isAI.getValue());
+                        mainMenuFragment.setArguments(bundle);
+
+                        // Go to avatar choosing activity
+                        Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                }
+            });
         }
-        btnStartGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String player1Username = setPlayer1Username.getText().toString();
-                String player2Username = setPlayer2Username.getText().toString();
-
-                // Store the entered usernames in ViewModel
-                viewModel.setPlayer1Username(player1Username);
-                viewModel.setPlayer2Username(player2Username);
-
-                // Navigate back to the MainMenuFragment
-                MainMenuFragment mainMenuFragment = new MainMenuFragment();
-
-                // Pass player names to MainMenuFragment
-                Bundle bundle = new Bundle();
-                bundle.putString("player1Username", player1Username);
-                bundle.putString("player2Username", player2Username);
-                bundle.putBoolean("isAI", liveData.isAI.getValue());
-                mainMenuFragment.setArguments(bundle);
-
-                // Go to avatar choosing activity
-                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
         return view;
     }
 }
+

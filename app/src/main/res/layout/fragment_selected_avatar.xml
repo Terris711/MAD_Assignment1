@@ -12,46 +12,83 @@
         android:text="Board size:"
         android:textSize="25dp"
         android:textStyle="bold"
+        android:fontFamily="@font/arcade2"
         />
     <TextView
         android:id="@+id/board_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:fontFamily="@font/arcade2"
         android:text="3 x 3"
+        android:textColor="@color/bronze"
         android:layout_marginBottom="20dp"/>
     <TextView
         android:id="@+id/player1name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="soyeon"
+        android:fontFamily="@font/arcade2"
         android:textAlignment="center"
-        android:textSize="45dp" />
+        android:textSize="30dp" />
 
-    <ImageView
-        android:id="@+id/player1avatar"
-        android:layout_width="180dp"
-        android:layout_height="180dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/player1avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
+            android:id="@+id/p1symbol"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="VS"
         android:textSize="35dp"
-        android:textAlignment="center"/>
+        android:textColor="@color/red"
+        android:fontFamily="@font/arcade2"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/player2name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="soyeon"
+        android:fontFamily="@font/arcade2"
         android:textAlignment="center"
-        android:textSize="45dp" />
+        android:textSize="30dp" />
 
-    <ImageView
-        android:id="@+id/player2avatar"
-        android:layout_width="180dp"
-        android:layout_height="180dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/player2avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:id="@+id/p2symbol"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+    </LinearLayout>
 
 
     <Button
@@ -59,7 +96,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Play" />
+        android:text="Play"
+        android:fontFamily="@font/arcade2"/>
 
 
 

@@ -2,8 +2,7 @@ package com.example.tictactoe.choosing_avatar;
 
 
 import android.content.Context;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,15 +13,18 @@ public class MainActivityData extends ViewModel {
     private MutableLiveData<String> clickedValue;
     private Player player1;
     private Player player2;
+    private Player modifyingPlayer;
     private int totalPlayer;
     private int playerCount;
     private int winCond;
     private BoardSize boardSize;
+
     public MainActivityData() {
         clickedValue = new MediatorLiveData<String>();
         clickedValue.setValue("player");
         this.player1 = new Player("",0);
         this.player2 = new Player("",0);
+        this.modifyingPlayer = this.player1;
         this.totalPlayer = totalPlayer;
         this.playerCount = playerCount;
     }
@@ -37,27 +39,33 @@ public class MainActivityData extends ViewModel {
     }
     public Player getPlayer2() { return player2; }
     public void setPlayer2(Player player2) {this.player2 = player2; }
+
+    public Player getModifyingPlayer() { return modifyingPlayer; }
+
+    public void setModifyingPlayer(Player modifyingPlayer) { this.modifyingPlayer = modifyingPlayer; }
+
     public String getClickedValue(){
         return clickedValue.getValue();
     }
     public MutableLiveData<String> getClicked() {
         return clickedValue;
     }
+
     public void setClickedValue(String value){
         clickedValue.setValue(value);
-        System.out.println("test" + clickedValue.getValue());
     }
 
-    public void checkPlayerAvatar(Player player, Context context, String errorMessage){
+    public void checkPlayerAvatar(Player player, String pageName, TextView avatarError){
         if (player.noAvatarImage()) {
-            Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show();
+            avatarError.setText("Please choose " + player.getName()+ "'s avatar");
         } else {
-            setClickedValue("boardChoosing");
+            setClickedValue(pageName);
         }
     }
 
-    public void setClickedValue(MutableLiveData<String> clickedValue) {
-        this.clickedValue = clickedValue;
+    public void setPlayersSymbol(Player player1, Player player2, int sb1, int sb2){
+        player1.setSymbol(sb1);
+        player2.setSymbol(sb2);
     }
 
     public int getWinCond() {
@@ -76,15 +84,4 @@ public class MainActivityData extends ViewModel {
         this.boardSize = boardSize;
     }
 
-    public void checkPlayerName(Player player, int num, Context context, EditText userName){
-        String ErrorUserName = userName.getText().toString();
-        if (getPlayerCount()==num) {
-            if (ErrorUserName.equals("")) {
-                Toast.makeText(context, "Please enter your name!", Toast.LENGTH_LONG).show();
-            } else {
-                player.setName(userName.getText().toString());
-                setClickedValue("avatar");
-            }
-        }
-    }
 }
