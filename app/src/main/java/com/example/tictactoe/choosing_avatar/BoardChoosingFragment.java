@@ -66,29 +66,29 @@ public class BoardChoosingFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_board_choosing, container, false);
         Button playButton = root.findViewById(R.id.play_button);
-        MainActivityData mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
+        UserProfileData userProfileDataViewModel = new ViewModelProvider(getActivity()).get(UserProfileData.class);
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RadioGroup radioGroup = root.findViewById(R.id.radioGroup);
                 if (radioGroup.getCheckedRadioButtonId() == R.id.board_33) {
-                    mainActivityDataViewModel.setBoardSize(BoardSize.ThreeXThree);
+                    userProfileDataViewModel.setBoardSize(BoardSize.ThreeXThree);
                 } else if (radioGroup.getCheckedRadioButtonId() == R.id.board_44) {
-                    mainActivityDataViewModel.setBoardSize(BoardSize.FourXFour);
+                    userProfileDataViewModel.setBoardSize(BoardSize.FourXFour);
                 } else {
-                    mainActivityDataViewModel.setBoardSize(BoardSize.FiveXFive);
+                    userProfileDataViewModel.setBoardSize(BoardSize.FiveXFive);
                 }
 
                 RadioGroup radioGroupWinCond = root.findViewById(R.id.radioGroup1);
                 if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_3) {
-                    mainActivityDataViewModel.setWinCond(3);
+                    userProfileDataViewModel.setWinCond(3);
                 } else if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_4) {
-                    mainActivityDataViewModel.setWinCond(4);
+                    userProfileDataViewModel.setWinCond(4);
                 } else {
-                    mainActivityDataViewModel.setWinCond(5);
+                    userProfileDataViewModel.setWinCond(5);
                 }
-                mainActivityDataViewModel.setClickedValue("chooseOX");
+                userProfileDataViewModel.setClickedValue("chooseOX");
             }
         });
         return root;

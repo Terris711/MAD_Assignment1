@@ -1,7 +1,6 @@
 package com.example.tictactoe.choosing_avatar;
 
 
-import android.content.Context;
 import android.widget.TextView;
 
 import androidx.lifecycle.MediatorLiveData;
@@ -9,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
-public class MainActivityData extends ViewModel {
+public class UserProfileData extends ViewModel {
     private MutableLiveData<String> clickedValue;
     private Player player1;
     private Player player2;
@@ -19,7 +18,7 @@ public class MainActivityData extends ViewModel {
     private int winCond;
     private BoardSize boardSize;
 
-    public MainActivityData() {
+    public UserProfileData() {
         clickedValue = new MediatorLiveData<String>();
         clickedValue.setValue("player");
         this.player1 = new Player("",0);

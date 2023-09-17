@@ -15,33 +15,33 @@ public class MainActivity extends AppCompatActivity {
     AvatarFrag avatarFrag = new AvatarFrag();
     BoardChoosingFragment boardChoosingFragment = new BoardChoosingFragment();
     SelectedAvatarFrag selectedAvatarFrag = new SelectedAvatarFrag();
-    MainActivityData mainActivityDataViewModel;
+    UserProfileData userProfileDataViewModel;
     FragmentManager fragmentManager = getSupportFragmentManager();
-    ChooseOXFrag chooseOXFrag = new ChooseOXFrag();
+    ChooseSymbolFrag chooseSymbolFrag = new ChooseSymbolFrag();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainActivityDataViewModel = new ViewModelProvider(this).get(MainActivityData.class);
+        userProfileDataViewModel = new ViewModelProvider(this).get(UserProfileData.class);
         initialiseDataFromBundle();
         loadAvatarFragment();
 
-        mainActivityDataViewModel.getClicked().observe(this, new Observer<String>() {
+        userProfileDataViewModel.getClicked().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String string) {
 
-                if(mainActivityDataViewModel.getClickedValue().equals("avatar")){
+                if(userProfileDataViewModel.getClickedValue().equals("avatar")){
                     loadAvatarFragment();
                 }
-                if(mainActivityDataViewModel.getClickedValue().equals("selected")){
+                if(userProfileDataViewModel.getClickedValue().equals("selected")){
                     loadSelectedAvatarFrag();
                 }
-                if (mainActivityDataViewModel.getClicked().getValue().equals("boardChoosing")) {
+                if (userProfileDataViewModel.getClicked().getValue().equals("boardChoosing")) {
                     loadBoardChoosingFragment();
                 }
-                if (mainActivityDataViewModel.getClicked().getValue().equals("chooseOX")) {
+                if (userProfileDataViewModel.getClicked().getValue().equals("chooseOX")) {
                     loadChooseOXFragment();
                 }
 
@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity {
         String player1Name = extras.getString("player1Username");
         String player2Name = extras.getString("player2Username");
         if (isAi) {
-            mainActivityDataViewModel.setTotalPlayer(1);
-            mainActivityDataViewModel.setPlayerCount(1);
-            mainActivityDataViewModel.getPlayer1().setName(player1Name);
+            userProfileDataViewModel.setTotalPlayer(1);
+            userProfileDataViewModel.setPlayerCount(1);
+            userProfileDataViewModel.getPlayer1().setName(player1Name);
         } else {
-            mainActivityDataViewModel.setTotalPlayer(2);
-            mainActivityDataViewModel.setPlayerCount(1);
-            mainActivityDataViewModel.getPlayer1().setName(player1Name);
-            mainActivityDataViewModel.getPlayer2().setName(player2Name);
+            userProfileDataViewModel.setTotalPlayer(2);
+            userProfileDataViewModel.setPlayerCount(1);
+            userProfileDataViewModel.getPlayer1().setName(player1Name);
+            userProfileDataViewModel.getPlayer2().setName(player2Name);
         }
 
     }
@@ -100,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
     private void loadChooseOXFragment(){
         Fragment frag = fragmentManager.findFragmentById(R.id.mainFrag);
         if(frag==null){
-            fragmentManager.beginTransaction().add(R.id.mainFrag,chooseOXFrag).commit();
+            fragmentManager.beginTransaction().add(R.id.mainFrag,chooseSymbolFrag).commit();
         }
         else{
-            fragmentManager.beginTransaction().replace(R.id.mainFrag,chooseOXFrag).commit();
+            fragmentManager.beginTransaction().replace(R.id.mainFrag,chooseSymbolFrag).commit();
         }
     }
 }

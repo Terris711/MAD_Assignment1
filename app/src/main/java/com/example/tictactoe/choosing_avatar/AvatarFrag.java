@@ -24,7 +24,7 @@ public class AvatarFrag extends Fragment implements SelectListener {
     ProgramAdapter programAdapter;
     List<Avatar> avatarList;
     RecyclerView.LayoutManager layoutManager;
-    MainActivityData mainActivityDataViewModel;
+    UserProfileData userProfileDataViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,44 +52,44 @@ public class AvatarFrag extends Fragment implements SelectListener {
         recyclerView.setAdapter(programAdapter);
         TextView chooseAvatarText = rootView.findViewById(R.id.chooseAvatarText);
         TextView avatarError = rootView.findViewById(R.id.avatarError);
-        mainActivityDataViewModel = new ViewModelProvider(getActivity()).get(MainActivityData.class);
+        userProfileDataViewModel = new ViewModelProvider(getActivity()).get(UserProfileData.class);
         Button goToNextBtn = rootView.findViewById(R.id.goToNextBtn);
 
         //Print player 1 name in textview
-        chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
+        chooseAvatarText.setText("Choose " +  userProfileDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
 
         goToNextBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
                 //user vs AI
-                if (mainActivityDataViewModel.getTotalPlayer() == 1) {
+                if (userProfileDataViewModel.getTotalPlayer() == 1) {
                     //set player 1 avatar and error handling
-                    mainActivityDataViewModel.checkPlayerAvatar(mainActivityDataViewModel.getPlayer1(), "boardChoosing", avatarError);
+                    userProfileDataViewModel.checkPlayerAvatar(userProfileDataViewModel.getPlayer1(), "boardChoosing", avatarError);
                 }
 
                 //player1 vs player2
-                if (mainActivityDataViewModel.getTotalPlayer() == 2) {
-                    if (mainActivityDataViewModel.getModifyingPlayer().noAvatarImage()) {
+                if (userProfileDataViewModel.getTotalPlayer() == 2) {
+                    if (userProfileDataViewModel.getModifyingPlayer().noAvatarImage()) {
                         //error message
-                        avatarError.setText("Please choose " + mainActivityDataViewModel.getModifyingPlayer().getName()+ "'s avatar");
+                        avatarError.setText("Please choose " + userProfileDataViewModel.getModifyingPlayer().getName()+ "'s avatar");
                         return;
                     }
                     //reset error message
                     avatarError.setText("");
                     //player2
-                    if (mainActivityDataViewModel.getPlayerCount() == 2) {
-                        mainActivityDataViewModel.setClickedValue("boardChoosing");
+                    if (userProfileDataViewModel.getPlayerCount() == 2) {
+                        userProfileDataViewModel.setClickedValue("boardChoosing");
                     }
                     //player 1
-                    if (mainActivityDataViewModel.getPlayerCount() == 1) {
-                        mainActivityDataViewModel.setClickedValue("avatar");
-                        mainActivityDataViewModel.setModifyingPlayer(mainActivityDataViewModel.getPlayer2());
-                        mainActivityDataViewModel.setPlayerCount(2);
+                    if (userProfileDataViewModel.getPlayerCount() == 1) {
+                        userProfileDataViewModel.setClickedValue("avatar");
+                        userProfileDataViewModel.setModifyingPlayer(userProfileDataViewModel.getPlayer2());
+                        userProfileDataViewModel.setPlayerCount(2);
                     }
                 }
                 //print player 2 name in textview
-                chooseAvatarText.setText("Choose " +  mainActivityDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
+                chooseAvatarText.setText("Choose " +  userProfileDataViewModel.getModifyingPlayer().getName() + "'s Avatar");
 
             }
         });
@@ -99,6 +99,6 @@ public class AvatarFrag extends Fragment implements SelectListener {
 
     @Override
     public void onItemClicked(Avatar avatar) {
-        mainActivityDataViewModel.getModifyingPlayer().setAvatarImage(avatar.getImage());
+        userProfileDataViewModel.getModifyingPlayer().setAvatarImage(avatar.getImage());
     }
 }

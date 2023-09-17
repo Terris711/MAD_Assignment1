@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.tictactoe.R;
-import com.example.tictactoe.choosing_avatar.MainActivityData;
 import com.example.tictactoe.choosing_avatar.Player;
 import com.example.tictactoe.choosing_avatar.SelectedAvatarFrag;
 
