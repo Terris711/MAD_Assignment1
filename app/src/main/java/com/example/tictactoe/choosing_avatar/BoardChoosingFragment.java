@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.tictactoe.R;
 
@@ -72,15 +73,31 @@ public class BoardChoosingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 RadioGroup radioGroup = root.findViewById(R.id.radioGroup);
+                RadioGroup radioGroupWinCond = root.findViewById(R.id.radioGroup1);
+                int checkedWinConditionId = radioGroupWinCond.getCheckedRadioButtonId();
+
+
                 if (radioGroup.getCheckedRadioButtonId() == R.id.board_33) {
                     userProfileDataViewModel.setBoardSize(BoardSize.ThreeXThree);
+                    if (checkedWinConditionId != R.id.win_by_3){
+                        Toast.makeText(getActivity(), "You can only win by 3 for 3x3 board size",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                 } else if (radioGroup.getCheckedRadioButtonId() == R.id.board_44) {
                     userProfileDataViewModel.setBoardSize(BoardSize.FourXFour);
+                    if (checkedWinConditionId != R.id.win_by_3 && checkedWinConditionId != R.id.win_by_4){
+                        Toast.makeText(getActivity(), "You can only win by 3 or 4 for 4x4 board size",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                 } else {
                     userProfileDataViewModel.setBoardSize(BoardSize.FiveXFive);
                 }
 
-                RadioGroup radioGroupWinCond = root.findViewById(R.id.radioGroup1);
+
                 if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_3) {
                     userProfileDataViewModel.setWinCond(3);
                 } else if (radioGroupWinCond.getCheckedRadioButtonId() == R.id.win_by_4) {
