@@ -4,7 +4,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tictactoe.R;
-import com.example.tictactoe.starting_page.MainMenuFragment;
 
 public class StartingActivity extends AppCompatActivity {
 
@@ -13,11 +12,25 @@ public class StartingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting);
 
+        Bundle extra = getIntent().getExtras();
+        String click = "newGame";
+
+        if (extra != null){
+            click = extra.getString("click");
+        }
+
         // Replace the fragment container with MainMenuFragment when the app starts
+
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, new MainMenuFragment())
-                    .commit();
+            if (click.equals("newGame")) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainer, new MainMenuFragment())
+                        .commit();
+            }if (click.equals("customise")){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainer, new UserCustomizationFragment())
+                        .commit();
+            }
         }
     }
 }
