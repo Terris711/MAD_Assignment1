@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".gameplay.InGameActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -94,22 +95,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/arcade2"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="#353535"
-                android:textSize="20dp"></TextView>
+                android:textSize="13dp"></TextView>
 
-            <TextView
-                android:id="@+id/player_two_count2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:text="0"
-                android:textColor="#353535"
-                android:textSize="20dp"></TextView>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/timer_o"
@@ -123,13 +114,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Timer:"
+                android:fontFamily="@font/arcade2"
                 ></TextView>
             <TextView
                 android:id="@+id/count_down_number_o"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="20dp"
+                android:fontFamily="@font/arcade2"
+                android:textSize="13sp"
                 android:text="0"/>
         </LinearLayout>
 
@@ -164,14 +157,14 @@
             <TextView
                 android:id="@+id/player_two_name_txt"
                 android:layout_width="match_parent"
-                android:layout_height="16dp"
+                android:layout_height="14dp"
                 android:layout_gravity="center"
                 android:layout_weight="2.65"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/arcade2"
                 android:gravity="center"
                 android:text="Player 1."
                 android:textColor="#353535"
-                android:textSize="14dp"></TextView>
+                android:textSize="13dp"></TextView>
 
 
         </LinearLayout>
@@ -254,11 +247,11 @@
                 android:layout_height="14dp"
                 android:layout_gravity="center"
                 android:layout_weight="2.65"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/arcade2"
                 android:gravity="center"
                 android:text="Player 2."
                 android:textColor="#353535"
-                android:textSize="14dp"></TextView>
+                android:textSize="13dp"></TextView>
 
 
         </LinearLayout>
@@ -302,11 +295,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/arcade2"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="#353535"
-                android:textSize="20dp"></TextView>
+                android:textSize="13dp"></TextView>
         </LinearLayout>
 
 
@@ -340,7 +333,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="P1 win count: "
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/p1_win_count"
@@ -359,15 +353,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="P1 win percentage: "
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/p1_win_percent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -390,15 +385,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="P2 win count: "
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/p2_win_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp"/>
             </LinearLayout>
 
 
@@ -410,7 +406,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="P2 win percentage: "
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/p2_win_percent"
@@ -429,7 +426,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Draw: "
-                    android:textSize="20sp" />
+                    android:fontFamily="@font/arcade2"
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/draw_count"
@@ -460,14 +458,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Available: "
-                android:textSize="20dp" />
+                android:fontFamily="@font/arcade2"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/available_move"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20"
-                android:textSize="20dp" />
+                android:fontFamily="@font/arcade2"
+                android:textSize="13sp"/>
 
         </LinearLayout>
     </LinearLayout>
