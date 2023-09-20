@@ -80,6 +80,7 @@ public class AvatarFrag extends Fragment implements SelectListener {
                     //player2
                     if (userProfileDataViewModel.getPlayerCount() == 2) {
                         userProfileDataViewModel.setClickedValue("boardChoosing");
+                        userProfileDataViewModel.setPlayerCount(1);
                     }
                     //player 1
                     if (userProfileDataViewModel.getPlayerCount() == 1) {

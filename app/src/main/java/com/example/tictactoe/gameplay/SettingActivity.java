@@ -17,6 +17,7 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_menu);
         setNewGameHandler();
+        setCustomiseHandler();
         setQuitHandler();
     }
 
@@ -30,12 +31,26 @@ public class SettingActivity extends AppCompatActivity {
         });
     }
 
+    private void setCustomiseHandler(){
+        Button customiseButton = findViewById(R.id.button_custom);
+        customiseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), StartingActivity.class);
+                intent.putExtra("click", "customise");
+
+                startActivity(intent);
+            }
+        });
+    }
+
     private void setNewGameHandler() {
         Button newGameButton = findViewById(R.id.button_new_game);
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), StartingActivity.class);
+                intent.putExtra("click", "newGame");
                 startActivity(intent);
             }
         });
