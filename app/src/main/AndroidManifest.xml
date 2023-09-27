@@ -17,7 +17,8 @@
             android:exported="false" />
         <activity
             android:name=".starting_page.StartingActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +27,16 @@
         </activity>
         <activity
             android:name=".gameplay.BoardChoosingAcitivity"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity
             android:name=".gameplay.InGameActivity"
-            android:exported="false"></activity>
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity
             android:name=".choosing_avatar.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
     </application>
 
 </manifest>
