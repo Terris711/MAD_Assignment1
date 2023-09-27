@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class BoardChoosingFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,22 +79,25 @@ public class BoardChoosingFragment extends Fragment {
                 int checkedWinConditionId = radioGroupWinCond.getCheckedRadioButtonId();
 
 
+                // For choosing board size 3x3
                 if (radioGroup.getCheckedRadioButtonId() == R.id.board_33) {
                     userProfileDataViewModel.setBoardSize(BoardSize.ThreeXThree);
-                    if (checkedWinConditionId != R.id.win_by_3){
+                    if (checkedWinConditionId != R.id.win_by_3) {
                         Toast.makeText(getActivity(), "You can only win by 3 for 3x3 board size",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    // For choosing board size 4x4
                 } else if (radioGroup.getCheckedRadioButtonId() == R.id.board_44) {
                     userProfileDataViewModel.setBoardSize(BoardSize.FourXFour);
-                    if (checkedWinConditionId != R.id.win_by_3 && checkedWinConditionId != R.id.win_by_4){
+                    if (checkedWinConditionId != R.id.win_by_3 && checkedWinConditionId != R.id.win_by_4) {
                         Toast.makeText(getActivity(), "You can only win by 3 or 4 for 4x4 board size",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    // For choosing board size 5x5
                 } else {
                     userProfileDataViewModel.setBoardSize(BoardSize.FiveXFive);
                 }
@@ -108,6 +113,59 @@ public class BoardChoosingFragment extends Fragment {
                 userProfileDataViewModel.setClickedValue("chooseOX");
             }
         });
+
+        RadioButton board33 = root.findViewById(R.id.board_33);
+        RadioButton board44 = root.findViewById(R.id.board_44);
+        RadioButton board55 = root.findViewById(R.id.board_55);
+
+        View win3 = root.findViewById(R.id.win_by_3);
+        View win4 = root.findViewById(R.id.win_by_4);
+        View win5 = root.findViewById(R.id.win_by_5);
+
+        RadioGroup radioGroupWinCond = root.findViewById(R.id.radioGroup1);
+
+
+        board33.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick (View v){
+                win3.setVisibility(View.VISIBLE);
+                win4.setVisibility(View.INVISIBLE);
+                win5.setVisibility(View.INVISIBLE);
+
+                if (radioGroupWinCond.getCheckedRadioButtonId() != R.id.win_by_3) {
+                    radioGroupWinCond.check(R.id.win_by_3);
+                }
+            }
+            });
+
+        board44.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick (View v){
+                win3.setVisibility(View.VISIBLE);
+                win4.setVisibility(View.VISIBLE);
+                win5.setVisibility(View.INVISIBLE);
+
+                if (radioGroupWinCond.getCheckedRadioButtonId() != R.id.win_by_3 &&
+                        radioGroupWinCond.getCheckedRadioButtonId() != R.id.win_by_4) {
+                    radioGroupWinCond.check(R.id.win_by_3);  // default to the smallest win condition
+                }
+            }
+            });
+
+        board55.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick (View v){
+                win3.setVisibility(View.VISIBLE);
+                win4.setVisibility(View.VISIBLE);
+                win5.setVisibility(View.VISIBLE);
+            }
+            });
+
         return root;
     }
 }
